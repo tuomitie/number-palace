@@ -12,26 +12,26 @@ Muista Sudokusovelluksista erottuakseen pelissä voisi mahdollisesti olla toimin
 
 **Tavanomainen pelikierros:**
 
--pelin käynnistäminen alkuvalikosta
--numeroiden sijoittaminen ruudukon tyhjiin kenttiin yksi kerrallaan
-  -pelaaja osoittaa tyhjiä kenttiä hiirellä, ja kirjoittaa ehdottamansa numeron kenttään
--pelikierros päättyy, kun kaikki numerot on syötetty oikein
+*pelin käynnistäminen alkuvalikosta
+*numeroiden sijoittaminen ruudukon tyhjiin kenttiin yksi kerrallaan
+  *pelaaja osoittaa tyhjiä kenttiä hiirellä, ja kirjoittaa ehdottamansa numeron kenttään
+*pelikierros päättyy, kun kaikki numerot on syötetty oikein
 
 **Alkuvalikon toiminnot:**
 
--alkuvalikossa voi olla listattuna useampi pelitapa:
-  -ajastettu
-  -aikaa vastaan
-  -erimuotoiset kentät?
+*alkuvalikossa voi olla listattuna useampi pelitapa:
+  *ajastettu
+  *aikaa vastaan
+  *erimuotoiset kentät?
 
--vaikeustasot:
-  -helppo
-  -tavallinen
-  -vaikea
-  -deity
+*vaikeustasot:
+  *helppo
+  *tavallinen
+  *vaikea
+  *deity
 
--jos päädytään toteuttamaan edellä kuvailtu graafinen "tilkkutäkki", sitä pääsee myös tarkastelemaan alkuvalikosta
+*jos päädytään toteuttamaan edellä kuvailtu graafinen "tilkkutäkki", sitä pääsee myös tarkastelemaan alkuvalikosta
 
--highscoret näytetään alkuvalikon yhteydessä, jos niitä on
+*highscoret näytetään alkuvalikon yhteydessä, jos niitä on
 
  :japanese_castle: @tuomitie
