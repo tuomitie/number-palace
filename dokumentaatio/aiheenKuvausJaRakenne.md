@@ -1,4 +1,4 @@
-#Number-Palace
+#Number Palace
 
 Sudoku-sanan alkuperäinen merkitys on Wikipedian mukaan "number place". Se kuitenkin kuulostaa aika tylsältä - siksi number palace!
 
