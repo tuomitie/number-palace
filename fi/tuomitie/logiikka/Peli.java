@@ -14,7 +14,7 @@ public class Peli {
 
     public void kaynnista() {
         System.out.print(
-                "Number Palace!\n"
+                " Number Palace!\n"
                 + " käytettävissä olevat komennot:\n"
                 + " 1 alusta peli\n"
                 + " 2 tulosta peli\n"
@@ -44,7 +44,6 @@ public class Peli {
 
     public void alusta() {
         sudoku.alusta();
-        
     }
 
     public void tulosta() {

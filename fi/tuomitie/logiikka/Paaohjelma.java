@@ -1,3 +1,5 @@
+package fi.tuomitie.logiikka;
+
 import java.util.Scanner;
 
 public class Paaohjelma {
@@ -8,4 +10,5 @@ public class Paaohjelma {
         Peli peli = new Peli(lukija);
         peli.kaynnista();
     }
+
 }
