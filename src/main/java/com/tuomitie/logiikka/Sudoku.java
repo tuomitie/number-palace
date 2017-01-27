@@ -14,7 +14,7 @@ public class Sudoku {
 
     public void alusta() {
         int[] osat = luoPohja();
-        /* Fill the 9x9 grid with the preset data from haePohja() method */
+        /* Fill the 9x9 grid with the preset data from luoPohja() method */
         int indeksi = 0;                        // Index used in going through the source int array
         for (int a = 0; a < 9; a++) {           // Rows of the array 
             for (int b = 0; b < 9; b++) {       // Cells of a row
