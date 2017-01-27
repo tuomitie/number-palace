@@ -36,6 +36,6 @@ Muista Sudokusovelluksista erottuakseen pelissä voisi mahdollisesti olla toimin
 
 **Luokkakaavio**
 
-![Luokkakaavio 0.1.0](dokumentaatio/kuvat/Luokkakaavio.png "Luokkakaavio 0.1.0")
+![Luokkakaavio 0.1.0](/dokumentaatio/kuvat/Luokkakaavio.png "Luokkakaavio 0.1.0")
 
 :japanese_castle: @tuomitie
