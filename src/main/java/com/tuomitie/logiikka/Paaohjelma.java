@@ -1,4 +1,4 @@
-package fi.tuomitie.logiikka;
+package com.tuomitie.logiikka;
 
 import java.util.Scanner;
 

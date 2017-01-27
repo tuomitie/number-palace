@@ -34,4 +34,8 @@ Muista Sudokusovelluksista erottuakseen pelissä voisi mahdollisesti olla toimin
 
 * highscoret näytetään alkuvalikon yhteydessä, jos niitä on
 
+**Luokkakaavio**
+
+![Luokkakaavio 0.1.0](dokumentaatio/kuvat/Luokkakaavio.png "Luokkakaavio 0.1.0")
+
 :japanese_castle: @tuomitie
