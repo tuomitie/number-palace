@@ -6,13 +6,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-public class Tiedostonlukija {
+public class Kenttamestari {
 
     private Scanner lukija;
     private File tiedosto;
     private List<Kentta> kenttaLista;
 
-    public Tiedostonlukija() {
+    public Kenttamestari() {
         lukija = null;
         tiedosto = new File("src/main/resources/pohjat.txt");
         kenttaLista = new ArrayList<>();

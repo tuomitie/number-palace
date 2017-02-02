@@ -27,8 +27,8 @@ public class SudokuTest {
     public void setUp() {
         Sudoku sudoku = new Sudoku();
         sudoku.alusta();
-        this.pohja = sudoku.haePohja();
-        this.pelaajanNakyma = sudoku.haePelaajanNakyma();
+        this.pohja = sudoku.haeRatkaisu();
+        this.pelaajanNakyma = sudoku.haeTilanne();
     }
 
     @After
