@@ -6,6 +6,7 @@ public class Peli {
 
     private Scanner lukija;
     private Sudoku sudoku;
+    
 
     public Peli(Scanner lukija) {
         this.lukija = lukija;
