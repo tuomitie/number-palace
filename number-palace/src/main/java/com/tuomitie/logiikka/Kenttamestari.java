@@ -34,12 +34,11 @@ public class Kenttamestari {
             int vaikeustaso = Integer.valueOf(osat[0]);                     // and split into diff. level, player view and solution
             kenttaLista.add(new Kentta(vaikeustaso, osat[1], osat[2]));     // make a list of these new bases
         }
-        lukija.close();     // Close the scanner opened in haeTiedosto
+        lukija.close();                                                     // Close the scanner opened in haeTiedosto
     }
     
     public Kentta annaKentta() {
-        Collections.shuffle(kenttaLista);
-        return kenttaLista.get(0);
+        Collections.shuffle(kenttaLista);       // Randomize the items on the list
+        return kenttaLista.get(0);              // and return one
     }
-
 }

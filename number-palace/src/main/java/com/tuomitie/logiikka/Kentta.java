@@ -6,10 +6,22 @@ public class Kentta implements Comparable<Kentta> {
     private String nakyma;
     private String vastaus;
 
-    public Kentta(int vaikeus, String nakyma, String vastaus) {
-        this.vastaus = vastaus;
+    public Kentta(int vaikeustaso, String nakyma, String vastaus) {
+        this.vaikeustaso = vaikeustaso;
         this.nakyma = nakyma;
-        this.vaikeustaso = vaikeus;
+        this.vastaus = vastaus;
+    }
+
+    public int[] taulukkoNumeroina(String data) {       // Used to convert the Strings read from file to ints
+        if (data.contains(".")) {                       // In the case of a player view get rid of the dots
+            data = data.replaceAll("\\.", "0");         // and replace them with zeros
+        }
+        String[] merkit = data.split("");               // Split the String into pieces
+        int[] numerot = new int[81];
+        for (int i = 0; i < merkit.length; i++) {
+            numerot[i] = Integer.valueOf(merkit[i]);    // Convert from String to int
+        }
+        return numerot;
     }
 
     public int haeVaikeustaso() {
@@ -22,18 +34,6 @@ public class Kentta implements Comparable<Kentta> {
 
     public String haeNakyma() {
         return nakyma;
-    }
-
-    public int[] taulukkoNumeroina(String data) {       // Used to convert the Strings read from file to get the 9x9 table in ints
-        if (data.contains(".")) {                       // In the case of a player view get rid of the dots
-            data = data.replaceAll("\\.", "0");         // and replace them with zeros
-        }
-        String[] merkit = data.split("");               // Split the String into pieces
-        int[] numerot = new int[81];
-        for (int i = 0; i < merkit.length; i++) {
-            numerot[i] = Integer.valueOf(merkit[i]);    // Convert from String to int
-        }
-        return numerot;
     }
 
     @Override
