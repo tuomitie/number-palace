@@ -10,22 +10,24 @@ public class Peli {
     public Peli(Scanner lukija) {
         this.lukija = lukija;
         this.sudoku = new Sudoku();
+
     }
 
     public void kaynnista() {
         sudoku.alusta();
-        System.out.print(
-                "Number Palace!\n"
-                + " a aloita peli\n"
-                + " x lopeta\n"
-                + "\n");
+
         while (true) {
+            System.out.print(
+                    "\nNumber Palace!\n"
+                    + " a uusi peli\n"
+                    + " x lopeta\n"
+                    + "\n");
             System.out.print("> ");
             String valinta = lukija.nextLine();
             if (valinta.equals("x")) {
                 break;
             }
-            suorita(valinta);
+            suorita(valinta);   // Separated into another method to support future functionalities
         }
     }
 
@@ -44,8 +46,15 @@ public class Peli {
             syote = pyydaSyote();
             if (syote.equals("x")) {
                 break;
-            } else{
+            } else if (syote.equals("z")) {
+                peruSiirto();
+            } else {
                 sudoku.asetaNumero(syote);
+                if (sudoku.haeSiirtojenMaara() > 40) {   // Only start checking for completion after 40 turns
+                    if (sudoku.tarkistaRatkaisu()) {
+                        System.out.println("Jee, voitit!");
+                    }
+                }
             }
         }
     }
@@ -55,10 +64,13 @@ public class Peli {
     }
 
     public String pyydaSyote() {
-        System.out.print("Anna koordinaatit ja numero (muodossa 123) - x lopettaa\n"
+        System.out.print("Anna koordinaatit ja numero (muodossa 123) - z peruu siirron - x lopettaa\n"
                 + "> ");
         String syote = lukija.nextLine();
         return syote;
     }
 
+    public void peruSiirto() {
+        sudoku.peruViimeisinSiirto();
+    }
 }

@@ -1,15 +1,18 @@
 package com.tuomitie.logiikka;
 
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Sudoku {
 
     private Kentta kentta;              // The Kentta (Field) object contains the difficulty level, solution and start view of the game
     private int[][] tilanne;            // Tilanne contains the state of the game as it stands
-    private int[][] ratkaisu;
+    private final int[][] ratkaisu;
+    private List<int[]> siirrot;
 
     public Sudoku() {
         tilanne = new int[9][9];
+        siirrot = new ArrayList<>();
         alusta();
         ratkaisu = luoRuudukko(kentta.taulukkoNumeroina(kentta.haeVastaus()));
     }
@@ -36,8 +39,8 @@ public class Sudoku {
 
     public void tulosta(int[][] taulukko) {         // To print out a 9x9 grid
         System.out.print("\n");
-        for (int a = 0; a < 9; a++) {               // Rows
-            for (int b = 0; b < 9; b++) {           // Cells
+        for (int a = 0; a < 9; a++) {
+            for (int b = 0; b < 9; b++) {
                 System.out.print(taulukko[a][b] + "  ");
             }
             System.out.print("\n");
@@ -54,6 +57,7 @@ public class Sudoku {
             if ((rivi < 9) & (rivi >= 0) & (solu < 9) & (solu >= 0) & (arvo <= 9) & (arvo > 0)) {
                 if (tilanne[rivi][solu] == 0) {
                     tilanne[rivi][solu] = luvut[2];
+                    siirrot.add(luvut);
                 }
             }
         }
@@ -68,12 +72,20 @@ public class Sudoku {
         return luvut;
     }
 
+    public void peruViimeisinSiirto() {             // Cancel the last move - Note: sets the cell back to zero!
+        int[] viimeisin = siirrot.get(siirrot.size() - 1);
+        if (tilanne[viimeisin[0]][viimeisin[1]] == viimeisin[2]) {
+            tilanne[viimeisin[0]][viimeisin[1]] = 0;
+            siirrot.add(viimeisin);
+        }
+    }
+
     public boolean tarkistaRatkaisu() {             // Check if user grid matches the solution
         boolean oikein = true;
         for (int a = 0; a < 9; a++) {               // Rows
             for (int b = 0; b < 9; b++) {           // Cells
                 if (tilanne[a][b] != ratkaisu[a][b]) {
-                    oikein = false;                 
+                    oikein = false;
                     break;
                 }
             }
@@ -81,18 +93,27 @@ public class Sudoku {
         return oikein;
     }
 
-//    public int haePelikentanSolu(int a, int b) {
-//        if ((a < 9) & (a >= 0) & (b < 9) & (b >= 0)) {
-//            return ratkaisu[a][b];
-//        } else {
-//            return -1;
-//        }
-//    }
+    public int haePelikentanSolu(int a, int b) {
+        if ((a < 9) & (a >= 0) & (b < 9) & (b >= 0)) {
+            return tilanne[a][b];
+        } else {
+            return -1;
+        }
+    }
+
+    public int haeSiirtojenMaara() {
+        return siirrot.size();
+    }
+
     public int[][] haeTilanne() {
         return tilanne;
     }
 
     public int[][] haeRatkaisu() {
         return ratkaisu;
+    }
+
+    public Kentta haeKentta() {
+        return kentta;
     }
 }

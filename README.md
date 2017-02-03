@@ -6,5 +6,5 @@ Documentation written in Finnish.
 **Dokumentaatio:**
 * [Aiheen kuvaus](dokumentaatio/aiheenKuvausJaRakenne.md)
 * [Tuntikirjanpito](dokumentaatio/tuntikirjanpito.md)
-* [Checkstyle](dokumentaatio/checkstyle/checkstyle.html)
-* [Pit-test](dokumentaatio/pit/index.html)
+* [Checkstyle](http://htmlpreview.github.io/?https://github.com/tuomitie/number-palace/blob/master/dokumentaatio/checkstyle/checkstyle.html)
+* [Pit-test](http://htmlpreview.github.io/?https://github.com/tuomitie/number-palace/blob/master/dokumentaatio/pit/index.html)
