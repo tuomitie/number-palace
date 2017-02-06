@@ -8,3 +8,4 @@ Päivä | Tunnit | Kuvaus
 27.01.2017 | 5 | Syötteiden muokkausta, ekat testit, luokkakaavion teko
 02.02.2017 | 6 | Sudoku-luokka kirjoitettu uusiksi, pohjien varastointi tiedostoon, Kenttä- ja Kenttämestari-luokat lisätty
 03.02.2017 | 4 | Kirjoitettu testejä, päivitetty luokkakaavio
+06.02.2017 | 3 | Pajassa vierailtu, GUIn alkeet
