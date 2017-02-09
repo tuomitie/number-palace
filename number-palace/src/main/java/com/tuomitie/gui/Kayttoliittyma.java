@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,18 +20,27 @@ import javax.swing.border.LineBorder;
 
 public class Kayttoliittyma implements Runnable {
 
+    private int[][] tilanne;
     private JFrame frame;
-    private JButton[][] napit;
+    private JButton[][] alkiot;
+    private JPanel pelialue;
+    private JPanel[][] blokit;
+    private Color reunat;
+    private Font numeroFontti;
 
-    public Kayttoliittyma() {
-        napit = new JButton[9][9];
+    public Kayttoliittyma(int[][] tilanne) {
+        alkiot = new JButton[9][9];
+        pelialue = new JPanel(new GridLayout(3, 3));
+        blokit = new JPanel[3][3];
+        this.tilanne = tilanne;
+        numeroFontti = new Font("Sans-Serif", Font.BOLD,21);
     }
 
     @Override
     public void run() {
         frame = new JFrame("number-palace");
         frame.setPreferredSize(new Dimension(500, 410));
-
+        frame.setLocation(300, 200);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         luoKomponentit(frame.getContentPane());
@@ -42,7 +52,6 @@ public class Kayttoliittyma implements Runnable {
     private void luoKomponentit(Container container) {
         container.setLayout(new FlowLayout());
 
-        JPanel pelialue = new JPanel(new GridLayout(3, 3));
         pelialue.setPreferredSize(new Dimension(360, 360));
         Border line = new LineBorder(Color.GRAY);
         Border margin = new EmptyBorder(10, 10, 10, 10);
@@ -56,10 +65,15 @@ public class Kayttoliittyma implements Runnable {
         container.add(pelialue);
         container.add(painikkeet);
 
-        JPanel blokit[][] = new JPanel[3][3];
+        luoBlokit();
+
+        alustaAlkiot();
+    }
+
+    public void luoBlokit() {               // Create the smaller 3x3 blocks mostly for visual purposes here
         for (int x = 0; x < 3; x++) {
             for (int y = 0; y < 3; y++) {
-                JPanel blokki = new JPanel(new FlowLayout());
+                JPanel blokki = new JPanel(new GridLayout(3,3,0,0));
                 Border viiva = new LineBorder(Color.BLACK);
                 blokki.setBorder(viiva);
                 blokki.setBackground(Color.white);
@@ -67,18 +81,26 @@ public class Kayttoliittyma implements Runnable {
                 pelialue.add(blokki);
             }
         }
+    }
 
+    public void alustaAlkiot() {
         for (int a = 0; a < 9; a++) {               // Rows
             for (int b = 0; b < 9; b++) {           // Cells
-                JButton button = new JButton("5");
-                button.setPreferredSize(new Dimension(30, 30));
+                JButton button = new JButton("     ");            
+                if (tilanne[a][b] != 0) {
+                    button.setText("" + tilanne[a][b]);
+                    button.setEnabled(false);
+                } else {
+                    button.addActionListener(new KlikkauksenKuuntelija(a,b));
+                }
                 button.setContentAreaFilled(false);
-                button.setBorder(new LineBorder(Color.white));
-                napit[a][b] = button;
+                button.setPreferredSize(new Dimension(30, 30));
+                button.setFont(numeroFontti);
+                button.setBorder(new LineBorder(Color.lightGray));
+                alkiot[a][b] = button;
                 blokit[(int) (a / 3)][(int) (b / 3)].add(button);
             }
         }
-
     }
 
     public JFrame getFrame() {

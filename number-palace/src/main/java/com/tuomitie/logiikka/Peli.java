@@ -22,7 +22,6 @@ public class Peli {
                     + " a uusi peli\n"
                     + " x lopeta\n"
                     + "\n");
-            System.out.print("> ");
             String valinta = lukija.nextLine();
             if (valinta.equals("x")) {
                 break;

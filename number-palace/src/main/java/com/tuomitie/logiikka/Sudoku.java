@@ -1,7 +1,9 @@
 package com.tuomitie.logiikka;
 
+import com.tuomitie.gui.Kayttoliittyma;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.SwingUtilities;
 
 public class Sudoku {
 
@@ -9,12 +11,15 @@ public class Sudoku {
     private int[][] tilanne;            // Tilanne contains the state of the game as it stands
     private final int[][] ratkaisu;
     private List<int[]> siirrot;
+    
+    private Kayttoliittyma kayttoliittyma;
 
     public Sudoku() {
         tilanne = new int[9][9];
         siirrot = new ArrayList<>();
         alusta();
         ratkaisu = luoRuudukko(kentta.taulukkoNumeroina(kentta.haeVastaus()));
+        kayttoliittyma = new Kayttoliittyma(tilanne);
     }
 
     public void alusta() {
@@ -23,6 +28,7 @@ public class Sudoku {
         kenttamestari.haeKaikkiKentatListalle();
         kentta = kenttamestari.annaKentta();                    // Get one grid from the manager and use it for the rest of the game
         tilanne = luoRuudukko(kentta.taulukkoNumeroina(kentta.haeNakyma()));    // Use the player view of the grid in int[] form with the method below
+        SwingUtilities.invokeLater(kayttoliittyma);
     }
 
     public int[][] luoRuudukko(int[] numerot) {     // To convert values into a 9x9 grid
