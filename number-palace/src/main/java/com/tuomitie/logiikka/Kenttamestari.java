@@ -6,6 +6,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Reads Kentta (field) classes from a file and serves a random one to be used
+ * as a basis for the game to be played.
+ *
+ * @author Tuomas
+ */
 public class Kenttamestari {
 
     private Scanner lukija;
@@ -18,6 +24,11 @@ public class Kenttamestari {
         kenttaLista = new ArrayList<>();
     }
 
+    /**
+     * Tries to read the file specified in the constructor.
+     *
+     * @return
+     */
     public Scanner haeTiedosto() {
         try {
             lukija = new Scanner(tiedosto, "UTF-8");    // This will be closed in haeKaikkiKentatListalle() method
@@ -27,6 +38,10 @@ public class Kenttamestari {
         return lukija;
     }
 
+    /**
+     * Adds all the read lines on a list, each as an numeric difficulty level
+     * and two strings in an array.
+     */
     public void haeKaikkiKentatListalle() {
         while (lukija.hasNextLine()) {
             String rivi = lukija.nextLine();
@@ -36,7 +51,10 @@ public class Kenttamestari {
         }
         lukija.close();                                                     // Close the scanner opened in haeTiedosto
     }
-    
+
+    /**
+     * Returns a random Kentta from the list.
+     */
     public Kentta annaKentta() {
         Collections.shuffle(kenttaLista);       // Randomize the items on the list
         return kenttaLista.get(0);              // and return one

@@ -2,17 +2,34 @@ package com.tuomitie.logiikka;
 
 import java.util.Scanner;
 
+/**
+ * Provides generic game controls like playing one turn, asking for input and
+ * such. These controls are board agnostic, i.e. it doesn't matter if one is
+ * playing sudoku or some other variant of the game.
+ *
+ * @author Tuomas
+ */
 public class Peli {
 
     private Scanner lukija;
     private Sudoku sudoku;
 
+    /**
+     * Initializes the game
+     *
+     * @param lukija
+     */
     public Peli(Scanner lukija) {
         this.lukija = lukija;
         this.sudoku = new Sudoku();
-
     }
 
+    /**
+     * Command line interface to the logic. To be removed with full GUI
+     * implementation. Calls the initializing method of the game to be started.
+     *
+     * @see com.tuomitie.logiikka.Sudoku#alusta()
+     */
     public void kaynnista() {
         sudoku.alusta();
 
@@ -30,6 +47,12 @@ public class Peli {
         }
     }
 
+    /**
+     * A remnant of the command line interface. To be removed with full GUI
+     * implementation.
+     *
+     * @param valinta
+     */
     public void suorita(String valinta) {
         if (valinta.equals("a")) {
             pelaaKierros();
@@ -38,6 +61,10 @@ public class Peli {
         }
     }
 
+    /**
+     * Command line controls input checks. Might become obsolete with GUI or be
+     * rewritten.
+     */
     public void pelaaKierros() {
         String syote = "";
         while (true) {
@@ -58,10 +85,18 @@ public class Peli {
         }
     }
 
+    /**
+     * Method to print out the player board.
+     */
     public void tulostaTilanne() {
         sudoku.tulosta(sudoku.haeTilanne());
     }
 
+    /**
+     * Asks for keyboard input for coordinates. Obsolete with full GUI.
+     *
+     * @return
+     */
     public String pyydaSyote() {
         System.out.print("Anna koordinaatit ja numero (muodossa 123) - z peruu siirron - x lopettaa\n"
                 + "> ");
@@ -69,6 +104,9 @@ public class Peli {
         return syote;
     }
 
+    /**
+     * Undo the last player move.
+     */
     public void peruSiirto() {
         sudoku.peruViimeisinSiirto();
     }

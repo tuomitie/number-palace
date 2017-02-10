@@ -9,3 +9,5 @@ Päivä | Tunnit | Kuvaus
 02.02.2017 | 6 | Sudoku-luokka kirjoitettu uusiksi, pohjien varastointi tiedostoon, Kenttä- ja Kenttämestari-luokat lisätty
 03.02.2017 | 4 | Kirjoitettu testejä, päivitetty luokkakaavio
 06.02.2017 | 3 | Pajassa vierailtu, GUIn alkeet
+09.02.2017 | 2 | GUI:ta kehitelty, klikkauksenkuuntelija lisätty
+10.02.2017 | 3 | JavaDocia aloitettu, dokumentaatio päivitetty

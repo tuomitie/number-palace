@@ -5,15 +5,28 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.SwingUtilities;
 
+/**
+ * The class establishes rules for the common Sudoku 9x9 game. Contains a Kentta
+ * object read from a file by the Kenttamestari class, tilanne and ratkaisu
+ * views based on the Kentta-input, and a list of moves the player has made.
+ * Also holds the GUI.
+ *
+ * @author Tuomas
+ */
 public class Sudoku {
 
     private Kentta kentta;              // The Kentta (Field) object contains the difficulty level, solution and start view of the game
     private int[][] tilanne;            // Tilanne contains the state of the game as it stands
     private final int[][] ratkaisu;
     private List<int[]> siirrot;
-    
+
     private Kayttoliittyma kayttoliittyma;
 
+    /**
+     * Create the data structures and call the initializing method
+     *
+     * @see com.tuomitie.logiikka.Sudoku#alusta()
+     */
     public Sudoku() {
         tilanne = new int[9][9];
         siirrot = new ArrayList<>();
@@ -22,6 +35,10 @@ public class Sudoku {
         kayttoliittyma = new Kayttoliittyma(tilanne);
     }
 
+    /**
+     * Calls the Kenttamestari class, which handles the different game layouts,
+     * creates the player view and solution based on the data, and invokes GUI.
+     */
     public void alusta() {
         Kenttamestari kenttamestari = new Kenttamestari();      // Set up the game by creating a new grid manager
         kenttamestari.haeTiedosto();
@@ -31,7 +48,13 @@ public class Sudoku {
         SwingUtilities.invokeLater(kayttoliittyma);
     }
 
-    public int[][] luoRuudukko(int[] numerot) {     // To convert values into a 9x9 grid
+    /**
+     * To convert an one-dimensional array of values into a 9x9 grid.
+     *
+     * @param numerot The input array.
+     * @return The 9x9 integer array.
+     */
+    public int[][] luoRuudukko(int[] numerot) {
         int[][] ruudukko = new int[9][9];
         int indeksi = 0;
         for (int a = 0; a < 9; a++) {               // Rows
@@ -43,7 +66,12 @@ public class Sudoku {
         return ruudukko;
     }
 
-    public void tulosta(int[][] taulukko) {         // To print out a 9x9 grid
+    /**
+     * Method prints out a 9x9 grid on the console.
+     *
+     * @param taulukko The array to be printed.
+     */
+    public void tulosta(int[][] taulukko) {
         System.out.print("\n");
         for (int a = 0; a < 9; a++) {
             for (int b = 0; b < 9; b++) {
@@ -54,7 +82,12 @@ public class Sudoku {
         System.out.print("\n");
     }
 
-    public void asetaNumero(String syote) {         // Update the state of the player board
+    /**
+     * Update the state of the player board.
+     *
+     * @param syote User entered input read from the keyboard.
+     */
+    public void asetaNumero(String syote) {
         if (syote.matches("[1-9]{3}")) {            // Regex to check if input was three numbers
             int[] luvut = kasitteleSyote(syote);
             int rivi = luvut[0];                    // Convert back to variables for legibility
@@ -69,7 +102,13 @@ public class Sudoku {
         }
     }
 
-    public int[] kasitteleSyote(String syote) {     // Turn the input string into integers
+    /**
+     * Turn the input string into integers.
+     *
+     * @param syote The input read from the user.
+     * @return An array of two coordinates and a number value.
+     */
+    public int[] kasitteleSyote(String syote) {
         String[] osat = syote.split("");
         int rivi = Integer.valueOf(osat[0]) - 1;    // Correct the user coordinates down by one
         int solu = Integer.valueOf(osat[1]) - 1;
@@ -78,7 +117,10 @@ public class Sudoku {
         return luvut;
     }
 
-    public void peruViimeisinSiirto() {             // Cancel the last move - Note: sets the cell back to zero!
+    /**
+     * Cancel the last move - Note: sets the cell back to zero.
+     */
+    public void peruViimeisinSiirto() {
         int[] viimeisin = siirrot.get(siirrot.size() - 1);
         if (tilanne[viimeisin[0]][viimeisin[1]] == viimeisin[2]) {
             tilanne[viimeisin[0]][viimeisin[1]] = 0;
@@ -86,7 +128,12 @@ public class Sudoku {
         }
     }
 
-    public boolean tarkistaRatkaisu() {             // Check if user grid matches the solution
+    /**
+     * Check if user grid matches the given solution.
+     *
+     * @return
+     */
+    public boolean tarkistaRatkaisu() {
         boolean oikein = true;
         for (int a = 0; a < 9; a++) {               // Rows
             for (int b = 0; b < 9; b++) {           // Cells

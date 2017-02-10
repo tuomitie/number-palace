@@ -6,8 +6,8 @@ import java.awt.event.ActionListener;
 
 public class KlikkauksenKuuntelija implements ActionListener {
     
-    private int x;
-    private int y;
+    private final int x;
+    private final int y;
 
     public KlikkauksenKuuntelija(int x, int y) {
         this.x = x;
