@@ -1,6 +1,5 @@
 package com.tuomitie.gui;
 
-<<<<<<< HEAD
 import com.tuomitie.logiikka.Sudoku;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -40,24 +39,3 @@ public class KlikkauksenKuuntelija implements ActionListener {
         System.out.println("" + x + y + " painettu.");
     }
 }
-=======
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-public class KlikkauksenKuuntelija implements ActionListener {
-    
-    private final int x;
-    private final int y;
-
-    public KlikkauksenKuuntelija(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-    
-    @Override
-    public void actionPerformed(ActionEvent ae) {
-        System.out.println("" + x + y + " painettu.");
-    }
-}
->>>>>>> 6a90eb18ac23542e4c65cbaeda7d9ade1733e7ca
