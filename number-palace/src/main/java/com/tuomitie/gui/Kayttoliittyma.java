@@ -6,12 +6,9 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.GridLayout;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.WindowConstants;
+import java.awt.Font;
+import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
@@ -42,7 +39,7 @@ public class Kayttoliittyma implements Runnable {
     @Override
     public void run() {
         frame = new JFrame("number-palace");
-        frame.setPreferredSize(new Dimension(500, 410));
+        frame.setPreferredSize(new Dimension(550, 400));
         frame.setLocation(300, 200);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,11 +54,16 @@ public class Kayttoliittyma implements Runnable {
 
         pelialue.setPreferredSize(new Dimension(360, 360));     // The game board
         Border line = new LineBorder(Color.GRAY);
-        Border margin = new EmptyBorder(10, 10, 10, 10);
+        Border margin = new EmptyBorder(10, 0, 10, 10);
         Border compound = new CompoundBorder(margin, line);
         pelialue.setBorder(compound);
 
-        JPanel painikkeet = new JPanel(new FlowLayout());       // Control button panel
+        JPanel painikkeet = new JPanel((new GridLayout(3, 1, 0, 10)));   // Control button panel
+        JButton tarkista = new JButton("Tarkista");
+        tarkista.setEnabled(false);
+        painikkeet.add(tarkista);
+        JButton vastaus = new JButton("Katso vastaus");
+        painikkeet.add(vastaus);
         JButton keskeyta = new JButton("Keskeytä");
         painikkeet.add(keskeyta);
 
