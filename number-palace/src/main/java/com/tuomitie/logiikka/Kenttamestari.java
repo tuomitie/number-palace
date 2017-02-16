@@ -20,8 +20,12 @@ public class Kenttamestari {
 
     public Kenttamestari() {
         lukija = null;
+<<<<<<< HEAD
 
         tiedosto = new File("number-palace/src/main/resources/pohjat.txt");
+=======
+        tiedosto = new File("src/main/resources/pohjat.txt");
+>>>>>>> 6a90eb18ac23542e4c65cbaeda7d9ade1733e7ca
         kenttaLista = new ArrayList<>();
     }
 

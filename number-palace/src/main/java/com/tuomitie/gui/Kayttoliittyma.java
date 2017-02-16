@@ -1,6 +1,9 @@
 package com.tuomitie.gui;
 
+<<<<<<< HEAD
 import com.tuomitie.logiikka.Sudoku;
+=======
+>>>>>>> 6a90eb18ac23542e4c65cbaeda7d9ade1733e7ca
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -18,6 +21,7 @@ import javax.swing.border.LineBorder;
 
 public class Kayttoliittyma implements Runnable {
 
+<<<<<<< HEAD
     private Sudoku sudoku;
 
     private JFrame frame;
@@ -35,6 +39,21 @@ public class Kayttoliittyma implements Runnable {
         blokit = new JPanel[3][3];
         alkiot = new JButton[9][9];
 
+=======
+    private int[][] tilanne;
+    private JFrame frame;
+    private JButton[][] alkiot;
+    private JPanel pelialue;
+    private JPanel[][] blokit;
+    private Color reunat;
+    private Font numeroFontti;
+
+    public Kayttoliittyma(int[][] tilanne) {
+        alkiot = new JButton[9][9];
+        pelialue = new JPanel(new GridLayout(3, 3));
+        blokit = new JPanel[3][3];
+        this.tilanne = tilanne;
+>>>>>>> 6a90eb18ac23542e4c65cbaeda7d9ade1733e7ca
         numeroFontti = new Font("Sans-Serif", Font.BOLD, 21);
     }
 
@@ -85,6 +104,7 @@ public class Kayttoliittyma implements Runnable {
     }
 
     public void alustaAlkiot() {
+<<<<<<< HEAD
         int[][] alkutilanne = sudoku.haeTilanne();
         for (int x = 0; x < 9; x++) {               // Rows
             for (int y = 0; y < 9; y++) {           // Cells
@@ -102,6 +122,23 @@ public class Kayttoliittyma implements Runnable {
                 button.setBorder(new LineBorder(Color.lightGray));
                 alkiot[x][y] = button;              // Add into the 9x9 button table
                 blokit[(int) (x / 3)][(int) (y / 3)].add(button);   // Add into block [0, 1 or 2][0, 1 or 2]
+=======
+        for (int a = 0; a < 9; a++) {               // Rows
+            for (int b = 0; b < 9; b++) {           // Cells
+                JButton button = new JButton(" ");  // Init with empty string
+                if (tilanne[a][b] != 0) {           // If contains a "given" set a number and make disabled
+                    button.setText("" + tilanne[a][b]);
+                    button.setEnabled(false);
+                } else {                            // If empty, make clickable
+                    button.addActionListener(new KlikkauksenKuuntelija(a, b));
+                }
+                button.setContentAreaFilled(false); // Hide cell styling
+                button.setPreferredSize(new Dimension(30, 30));
+                button.setFont(numeroFontti);
+                button.setBorder(new LineBorder(Color.lightGray));
+                alkiot[a][b] = button;              // Add into the 9x9 button table
+                blokit[(int) (a / 3)][(int) (b / 3)].add(button);   // Add into block [0, 1 or 2][0, 1 or 2]
+>>>>>>> 6a90eb18ac23542e4c65cbaeda7d9ade1733e7ca
             }
         }
     }

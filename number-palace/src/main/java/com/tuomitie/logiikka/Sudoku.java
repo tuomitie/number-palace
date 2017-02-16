@@ -1,7 +1,10 @@
 package com.tuomitie.logiikka;
 
 import com.tuomitie.gui.Kayttoliittyma;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6a90eb18ac23542e4c65cbaeda7d9ade1733e7ca
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.SwingUtilities;
@@ -33,7 +36,11 @@ public class Sudoku {
         siirrot = new ArrayList<>();
         alusta();
         ratkaisu = luoRuudukko(kentta.taulukkoNumeroina(kentta.haeVastaus()));
+<<<<<<< HEAD
         kayttoliittyma = new Kayttoliittyma(this);
+=======
+        kayttoliittyma = new Kayttoliittyma(tilanne);
+>>>>>>> 6a90eb18ac23542e4c65cbaeda7d9ade1733e7ca
     }
 
     /**
@@ -89,13 +96,25 @@ public class Sudoku {
      * @param syote User entered input read from the keyboard.
      */
     public void asetaNumero(String syote) {
+<<<<<<< HEAD
         if (syote.matches("[0-9]{3}")) {      // Regex to check if input was three numbers
+=======
+        if (syote.matches("[1-9]{3}")) {            // Regex to check if input was three numbers
+>>>>>>> 6a90eb18ac23542e4c65cbaeda7d9ade1733e7ca
             int[] luvut = kasitteleSyote(syote);
             int rivi = luvut[0];                    // Convert back to variables for legibility
             int solu = luvut[1];
             int arvo = luvut[2];                    // Row and cell should be 0-8, and value 1-9
+<<<<<<< HEAD
             if ((rivi < 9) && (rivi >= 0) && (solu < 9) && (solu >= 0) && (arvo <= 9) && (arvo >= 0)) {
                 tilanne[rivi][solu] = luvut[2];
+=======
+            if ((rivi < 9) & (rivi >= 0) & (solu < 9) & (solu >= 0) & (arvo <= 9) & (arvo > 0)) {
+                if (tilanne[rivi][solu] == 0) {
+                    tilanne[rivi][solu] = luvut[2];
+                    siirrot.add(luvut);
+                }
+>>>>>>> 6a90eb18ac23542e4c65cbaeda7d9ade1733e7ca
             }
         }
     }

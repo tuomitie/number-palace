@@ -18,6 +18,7 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+<<<<<<< HEAD
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
@@ -25,6 +26,8 @@
             <version>3.6.2</version>
             <scope>test</scope>
         </dependency>
+=======
+>>>>>>> 6a90eb18ac23542e4c65cbaeda7d9ade1733e7ca
     </dependencies>
 
     <build>
