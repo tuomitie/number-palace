@@ -25,17 +25,15 @@ public class KlikkauksenKuuntelija implements ActionListener {
             luku++;
             sudoku.asetaNumero("" + (x + 1) + (y + 1) + luku);
             button.setText(String.valueOf(luku));
-            sudoku.tulosta(sudoku.haeTilanne());
         } else if (luku == 9) {
             sudoku.asetaNumero("" + (x + 1) + (y + 1) + 0);
             button.setText(" ");
-            sudoku.tulosta(sudoku.haeTilanne());
         }
     }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
         kasvata();
-        System.out.println("" + x + y + " painettu.");
+        System.out.print("" + x + y + " ");
     }
 }

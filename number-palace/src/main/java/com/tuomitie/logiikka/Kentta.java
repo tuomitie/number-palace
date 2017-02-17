@@ -7,9 +7,9 @@ package com.tuomitie.logiikka;
  */
 public class Kentta implements Comparable<Kentta> {
 
-    private int vaikeustaso;
-    private String nakyma;
-    private String vastaus;
+    private final int vaikeustaso;
+    private final String nakyma;
+    private final String vastaus;
 
     /**
      * The constructor must be called with all of the three variables of a

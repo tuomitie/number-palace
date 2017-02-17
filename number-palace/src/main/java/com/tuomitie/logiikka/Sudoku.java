@@ -29,9 +29,9 @@ public class Sudoku {
      * @see com.tuomitie.logiikka.Sudoku#alusta()
      */
     public Sudoku() {
-        tilanne = new int[9][9];
         siirrot = new ArrayList<>();
         alusta();
+        tilanne = luoRuudukko(kentta.taulukkoNumeroina(kentta.haeNakyma()));
         ratkaisu = luoRuudukko(kentta.taulukkoNumeroina(kentta.haeVastaus()));
         kayttoliittyma = new Kayttoliittyma(this);
     }
@@ -44,8 +44,7 @@ public class Sudoku {
         Kenttamestari kenttamestari = new Kenttamestari();      // Set up the game by creating a new grid manager
         kenttamestari.haeTiedosto();
         kenttamestari.haeKaikkiKentatListalle();
-        kentta = kenttamestari.annaKentta();                    // Get one grid from the manager and use it for the rest of the game
-        tilanne = luoRuudukko(kentta.taulukkoNumeroina(kentta.haeNakyma()));    // Use the player view of the grid in int[] form with the method below
+        kentta = kenttamestari.annaKentta();                    // Get one grid from the manager and use it for the rest of the game        
         SwingUtilities.invokeLater(kayttoliittyma);
     }
 
@@ -113,17 +112,6 @@ public class Sudoku {
         int arvo = Integer.valueOf(osat[2]);
         int[] luvut = {rivi, solu, arvo};
         return luvut;
-    }
-
-    /**
-     * Cancel the last move - Note: sets the cell back to zero.
-     */
-    public void peruViimeisinSiirto() {
-        int[] viimeisin = siirrot.get(siirrot.size() - 1);
-        if (tilanne[viimeisin[0]][viimeisin[1]] == viimeisin[2]) {
-            tilanne[viimeisin[0]][viimeisin[1]] = 0;
-            siirrot.add(viimeisin);
-        }
     }
 
     /**

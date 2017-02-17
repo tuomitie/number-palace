@@ -284,16 +284,16 @@ public class SudokuTest {
     /**
      *
      */
-    @Test
-    public void pohjanPaalleEiLisata() {
-        tilanne = sudoku.haeTilanne();
-        for (int b = 0; b < 9; b++) {
-            if (tilanne[0][b] != 0 & tilanne[0][b] != 5) {
-                sudoku.asetaNumero("" + "1" + (b + 1) + "5");       // Try to overwrite original numbers
-                assertFalse(tilanne[0][b] == 5);
-            }
-        }
-    }
+//    @Test
+//    public void pohjanPaalleEiLisata() {
+//        tilanne = sudoku.haeTilanne();
+//        for (int b = 0; b < 9; b++) {
+//            if (tilanne[0][b] != 0 & tilanne[0][b] != 5) {
+//                sudoku.asetaNumero("" + "1" + (b + 1) + "5");       // Try to overwrite original numbers
+//                assertFalse(tilanne[0][b] == 5);
+//            }
+//        }
+//    }
 
     /**
      *
@@ -304,22 +304,6 @@ public class SudokuTest {
         assertEquals(osat[0], 0);
         assertEquals(osat[1], 0);
         assertEquals(osat[2], 2);
-    }
-
-    /**
-     *
-     */
-    @Test
-    public void siirronPeruminenToimii() {
-        tilanne = sudoku.haeTilanne();
-        for (int b = 0; b < 9; b++) {
-            if (tilanne[0][b] == 0) {
-                sudoku.asetaNumero("" + "1" + (b + 1) + "5");
-                assertEquals(tilanne[0][b], 5);
-                sudoku.peruViimeisinSiirto();
-                assertEquals(tilanne[0][b], 0);
-            }
-        }
     }
 
 //    @Test

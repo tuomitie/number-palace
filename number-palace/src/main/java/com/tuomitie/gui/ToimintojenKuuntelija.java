@@ -8,8 +8,22 @@ import java.awt.event.ActionListener;
  */
 public class ToimintojenKuuntelija implements ActionListener {
 
+    private String toiminto;
+    private Kayttoliittyma kali;
+
+    public ToimintojenKuuntelija(String toiminto, Kayttoliittyma kali) {
+        this.toiminto = toiminto;
+        this.kali = kali;
+    }
+
+    public void suorita() {
+        if (toiminto.equals("vastaus")) {
+            kali.naytaRatkaisu();
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent ae) {
-        System.out.println("test");
+        suorita();
     }
 }

@@ -33,6 +33,8 @@ public class Peli {
     public void kaynnista() {
         sudoku.alusta();
 
+        sudoku.tulosta(sudoku.haeRatkaisu());
+        
         while (true) {
             System.out.print(
                     "\nNumber Palace!\n"
@@ -72,8 +74,6 @@ public class Peli {
             syote = pyydaSyote();
             if (syote.equals("x")) {
                 break;
-            } else if (syote.equals("z")) {
-                peruSiirto();
             } else {
                 sudoku.asetaNumero(syote);
                 if (sudoku.haeSiirtojenMaara() > 40) {   // Only start checking for completion after 40 turns
@@ -98,16 +98,9 @@ public class Peli {
      * @return
      */
     public String pyydaSyote() {
-        System.out.print("Anna koordinaatit ja numero (muodossa 123) - z peruu siirron - x lopettaa\n"
+        System.out.print("Anna koordinaatit ja numero (muodossa 123) - x lopettaa\n"
                 + "> ");
         String syote = lukija.nextLine();
         return syote;
-    }
-
-    /**
-     * Undo the last player move.
-     */
-    public void peruSiirto() {
-        sudoku.peruViimeisinSiirto();
     }
 }
