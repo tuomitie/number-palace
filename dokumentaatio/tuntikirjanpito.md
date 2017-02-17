@@ -12,3 +12,4 @@ Päivä | Tunnit | Kuvaus
 09.02.2017 | 2 | GUI:ta kehitelty, klikkauksenkuuntelija lisätty
 10.02.2017 | 3 | JavaDocia aloitettu, dokumentaatio päivitetty
 16.02.2017 | 4 | Klikkaukset päivittävät pelikenttää ja GUI:ta. Git-konfliktien selvittelyä.
+17.02.2017 | 3 | Korjattu näkymän ja ratkaisun ristiriidat. Lisätty painike ratkaisun näyttämiseen.
