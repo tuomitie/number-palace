@@ -15,9 +15,9 @@ public class Peli {
     private Sudoku sudoku;
 
     /**
-     * Initializes the game
+     * Initializes the game.
      *
-     * @param lukija
+     * @param lukija The Scanner object passed by the main method.
      */
     public Peli(Scanner lukija) {
         this.lukija = lukija;
@@ -33,20 +33,20 @@ public class Peli {
     public void kaynnista() {
         sudoku.alusta();
 
-        sudoku.tulosta(sudoku.haeRatkaisu());
+        sudoku.tulosta(sudoku.getRatkaisu());
         
-        while (true) {
-            System.out.print(
-                    "\nNumber Palace!\n"
-                    + " a uusi peli\n"
-                    + " x lopeta\n"
-                    + "\n");
-            String valinta = lukija.nextLine();
-            if (valinta.equals("x")) {
-                break;
-            }
-            suorita(valinta);   // Separated into another method to support future functionalities
-        }
+//        while (true) {
+//            System.out.print(
+//                    "\nNumber Palace!\n"
+//                    + " a uusi peli\n"
+//                    + " x lopeta\n"
+//                    + "\n");
+//            String valinta = lukija.nextLine();
+//            if (valinta.equals("x")) {
+//                break;
+//            }
+//            suorita(valinta);   // Separated into another method to support future functionalities
+//        }
     }
 
     /**
@@ -55,52 +55,52 @@ public class Peli {
      *
      * @param valinta
      */
-    public void suorita(String valinta) {
-        if (valinta.equals("a")) {
-            pelaaKierros();
-        } else {
-            System.out.print("> ");
-        }
-    }
+//    public void suorita(String valinta) {
+//        if (valinta.equals("a")) {
+//            pelaaKierros();
+//        } else {
+//            System.out.print("> ");
+//        }
+//    }
 
     /**
      * Command line controls input checks. Might become obsolete with GUI or be
      * rewritten.
      */
-    public void pelaaKierros() {
-        String syote = "";
-        while (true) {
-            tulostaTilanne();
-            syote = pyydaSyote();
-            if (syote.equals("x")) {
-                break;
-            } else {
-                sudoku.asetaNumero(syote);
-                if (sudoku.haeSiirtojenMaara() > 40) {   // Only start checking for completion after 40 turns
-                    if (sudoku.tarkistaRatkaisu()) {
-                        System.out.println("Jee, voitit!");
-                    }
-                }
-            }
-        }
-    }
+//    public void pelaaKierros() {
+//        String syote = "";
+//        while (true) {
+//            tulostaTilanne();
+//            syote = pyydaSyote();
+//            if (syote.equals("x")) {
+//                break;
+//            } else {
+//                sudoku.asetaNumero(syote);
+//                if (sudoku.haeSiirtojenMaara() > 40) {   // Only start checking for completion after 40 turns
+//                    if (sudoku.tarkistaRatkaisu()) {
+//                        System.out.println("Jee, voitit!");
+//                    }
+//                }
+//            }
+//        }
+//    }
 
     /**
      * Method to print out the player board.
      */
-    public void tulostaTilanne() {
-        sudoku.tulosta(sudoku.haeTilanne());
-    }
+//    public void tulostaTilanne() {
+//        sudoku.tulosta(sudoku.getTilanne());
+//    }
 
     /**
      * Asks for keyboard input for coordinates. Obsolete with full GUI.
      *
      * @return
      */
-    public String pyydaSyote() {
-        System.out.print("Anna koordinaatit ja numero (muodossa 123) - x lopettaa\n"
-                + "> ");
-        String syote = lukija.nextLine();
-        return syote;
-    }
+//    public String pyydaSyote() {
+//        System.out.print("Anna koordinaatit ja numero (muodossa 123) - x lopettaa\n"
+//                + "> ");
+//        String syote = lukija.nextLine();
+//        return syote;
+//    }
 }

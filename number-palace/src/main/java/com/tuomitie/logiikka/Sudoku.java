@@ -24,15 +24,15 @@ public class Sudoku {
     private Kayttoliittyma kayttoliittyma;
 
     /**
-     * Create the data structures and call the initializing method
+     * Create the data structures and call the initializing method.
      *
      * @see com.tuomitie.logiikka.Sudoku#alusta()
      */
     public Sudoku() {
         siirrot = new ArrayList<>();
         alusta();
-        tilanne = luoRuudukko(kentta.taulukkoNumeroina(kentta.haeNakyma()));
-        ratkaisu = luoRuudukko(kentta.taulukkoNumeroina(kentta.haeVastaus()));
+        tilanne = luoRuudukko(kentta.taulukkoNumeroina(kentta.getNakyma()));
+        ratkaisu = luoRuudukko(kentta.taulukkoNumeroina(kentta.getVastaus()));
         kayttoliittyma = new Kayttoliittyma(this);
     }
 
@@ -117,7 +117,7 @@ public class Sudoku {
     /**
      * Check if user grid matches the given solution.
      *
-     * @return
+     * @return A boolean value true if the player board matches the solution exactly.
      */
     public boolean tarkistaRatkaisu() {
         boolean oikein = true;
@@ -132,6 +132,12 @@ public class Sudoku {
         return oikein;
     }
 
+    /**
+     * Get a specified cell of the player board. Checks for valid coordinates.
+     * @param a Board row number.
+     * @param b Board column number.
+     * @return The stored number or -1 if invalid coordinates.
+     */
     public int haePelikentanSolu(int a, int b) {
         if ((a < 9) & (a >= 0) & (b < 9) & (b >= 0)) {
             return tilanne[a][b];
@@ -140,19 +146,23 @@ public class Sudoku {
         }
     }
 
+    /**
+     * Get the number of moves made by the player.
+     * @return The size of the list containing the moves = amount of moves.
+     */
     public int haeSiirtojenMaara() {
         return siirrot.size();
     }
 
-    public int[][] haeTilanne() {
+    public int[][] getTilanne() {
         return tilanne;
     }
 
-    public int[][] haeRatkaisu() {
+    public int[][] getRatkaisu() {
         return ratkaisu;
     }
 
-    public Kentta haeKentta() {
+    public Kentta getKentta() {
         return kentta;
     }
 }

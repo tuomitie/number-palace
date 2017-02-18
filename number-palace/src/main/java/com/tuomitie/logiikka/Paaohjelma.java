@@ -5,7 +5,7 @@ import java.util.Scanner;
 import javax.swing.SwingUtilities;
 
 /**
- * Main method to start the game
+ * Main method to start the game.
  *
  * @author Tuomas
  */
@@ -13,11 +13,11 @@ public class Paaohjelma {
 
     /**
      * Main method initializes the game with a keyboard scanner (used for
-     * development)
+     * development).
      *
      * @see com.tuomitie.logiikka.Peli#kaynnista()
      *
-     * @param args
+     * @param args You know what this is.
      */
     public static void main(String[] args) {
         Scanner lukija = new Scanner(System.in);

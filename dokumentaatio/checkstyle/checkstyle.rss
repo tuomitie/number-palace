@@ -25,7 +25,7 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2017</copyright>
     <item>
-      <title>File: 7,
+      <title>File: 8,
              Errors: 0,
              Warnings: 0,
              Infos: 0
@@ -75,6 +75,20 @@ under the License.
                           <tr>
                 <td>
                   <a href="${project.url}/checkstyle.html#com.tuomitie.logiikka.Peli.java">com/tuomitie/logiikka/Peli.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#com.tuomitie.gui.ToimintojenKuuntelija.java">com/tuomitie/gui/ToimintojenKuuntelija.java</a>
                 </td>
                 <td>
                   0

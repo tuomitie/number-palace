@@ -43,20 +43,20 @@ public class Kentta implements Comparable<Kentta> {
         return numerot;
     }
 
-    public int haeVaikeustaso() {
+    public int getVaikeustaso() {
         return vaikeustaso;
     }
 
-    public String haeVastaus() {
+    public String getVastaus() {
         return vastaus;
     }
 
-    public String haeNakyma() {
+    public String getNakyma() {
         return nakyma;
     }
 
     @Override
     public int compareTo(Kentta verrattava) {           // For comparing games by based on difficulty
-        return this.vaikeustaso - verrattava.haeVaikeustaso();
+        return this.vaikeustaso - verrattava.getVaikeustaso();
     }
 }

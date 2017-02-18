@@ -8,25 +8,54 @@
 <div id="overview"><a href="../../../../apidocs/com/tuomitie/gui/KlikkauksenKuuntelija.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <strong class="jxr_keyword">package</strong> com.tuomitie.gui;
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   
-<a class="jxr_linenumber" name="L3" href="#L3">3</a>   
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <strong class="jxr_keyword">import</strong> com.tuomitie.logiikka.Sudoku;
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> java.awt.event.ActionEvent;
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">import</strong> java.awt.event.ActionListener;
-<a class="jxr_linenumber" name="L6" href="#L6">6</a>   
-<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../com/tuomitie/gui/KlikkauksenKuuntelija.html">KlikkauksenKuuntelija</a> <strong class="jxr_keyword">implements</strong> ActionListener {
-<a class="jxr_linenumber" name="L8" href="#L8">8</a>       
-<a class="jxr_linenumber" name="L9" href="#L9">9</a>       <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> x;
-<a class="jxr_linenumber" name="L10" href="#L10">10</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> y;
-<a class="jxr_linenumber" name="L11" href="#L11">11</a>  
-<a class="jxr_linenumber" name="L12" href="#L12">12</a>      <strong class="jxr_keyword">public</strong> <a href="../../../com/tuomitie/gui/KlikkauksenKuuntelija.html">KlikkauksenKuuntelija</a>(<strong class="jxr_keyword">int</strong> x, <strong class="jxr_keyword">int</strong> y) {
-<a class="jxr_linenumber" name="L13" href="#L13">13</a>          <strong class="jxr_keyword">this</strong>.x = x;
-<a class="jxr_linenumber" name="L14" href="#L14">14</a>          <strong class="jxr_keyword">this</strong>.y = y;
-<a class="jxr_linenumber" name="L15" href="#L15">15</a>      }
-<a class="jxr_linenumber" name="L16" href="#L16">16</a>      
-<a class="jxr_linenumber" name="L17" href="#L17">17</a>      @Override
-<a class="jxr_linenumber" name="L18" href="#L18">18</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> actionPerformed(ActionEvent ae) {
-<a class="jxr_linenumber" name="L19" href="#L19">19</a>          System.out.println(<span class="jxr_string">""</span> + x + y + <span class="jxr_string">" painettu."</span>);
-<a class="jxr_linenumber" name="L20" href="#L20">20</a>      }
-<a class="jxr_linenumber" name="L21" href="#L21">21</a>  }
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">import</strong> javax.swing.JButton;
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../com/tuomitie/gui/KlikkauksenKuuntelija.html">KlikkauksenKuuntelija</a> <strong class="jxr_keyword">implements</strong> ActionListener {
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> x;
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> y;
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> JButton button;
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>      <strong class="jxr_keyword">private</strong> <a href="../../../com/tuomitie/logiikka/Sudoku.html">Sudoku</a> sudoku;
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>  
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>      <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>  <em class="jxr_javadoccomment">     * KlikkauksenKuuntelija handles the mouse clicks on the player board.</em>
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>  <em class="jxr_javadoccomment">     * </em>
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <em class="jxr_javadoccomment">     * @param x The row of the location of the button.</em>
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <em class="jxr_javadoccomment">     * @param y The column of the location.</em>
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>  <em class="jxr_javadoccomment">     * @param button The button in question.</em>
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <em class="jxr_javadoccomment">     * @param sudoku The Sudoku game the button affects.</em>
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>      <strong class="jxr_keyword">public</strong> <a href="../../../com/tuomitie/gui/KlikkauksenKuuntelija.html">KlikkauksenKuuntelija</a>(<strong class="jxr_keyword">int</strong> x, <strong class="jxr_keyword">int</strong> y, JButton button, <a href="../../../com/tuomitie/logiikka/Sudoku.html">Sudoku</a> sudoku) {
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>          <strong class="jxr_keyword">this</strong>.x = x;
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>          <strong class="jxr_keyword">this</strong>.y = y;
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>          <strong class="jxr_keyword">this</strong>.button = button;
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>          <strong class="jxr_keyword">this</strong>.sudoku = sudoku;
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>      }
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>  
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>      <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>  <em class="jxr_javadoccomment">     * Increments the cell in the game and the button representing it on the board.</em>
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>  <em class="jxr_javadoccomment">     * Only displays the valid Sudoku numbers 1-9, and resets to (hidden) zero after reaching 9.</em>
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> kasvata() {
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>          <strong class="jxr_keyword">int</strong> luku = sudoku.haePelikentanSolu(x, y);
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>          <strong class="jxr_keyword">if</strong> (luku &gt;= 0 &amp; luku &lt; 9) {
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>              luku++;
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>              sudoku.asetaNumero(<span class="jxr_string">""</span> + (x + 1) + (y + 1) + luku);
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>              button.setText(String.valueOf(luku));
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>          } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (luku == 9) {
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>              sudoku.asetaNumero(<span class="jxr_string">""</span> + (x + 1) + (y + 1) + 0);
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>              button.setText(<span class="jxr_string">" "</span>);
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>          }
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>      }
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>  
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>      @Override
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> actionPerformed(ActionEvent ae) {
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>          kasvata();
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>      }
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>  }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2017. All rights reserved.</div>

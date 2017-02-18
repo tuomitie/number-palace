@@ -13,3 +13,4 @@ Päivä | Tunnit | Kuvaus
 10.02.2017 | 3 | JavaDocia aloitettu, dokumentaatio päivitetty
 16.02.2017 | 4 | Klikkaukset päivittävät pelikenttää ja GUI:ta. Git-konfliktien selvittelyä.
 17.02.2017 | 3 | Korjattu näkymän ja ratkaisun ristiriidat. Lisätty painike ratkaisun näyttämiseen.
+18.02.2017 | 5 | Javadoc ja testit kuntoon, rivikattavuus nyt 89%. Sekvenssikaaviot lisätty. Painikkeiden toiminta ja ratkaisun tarkastus toimii.

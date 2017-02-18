@@ -13,23 +13,20 @@ public class PeliTest {
     private Sudoku sudoku;
 
     public PeliTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
+        this.sudoku = new Sudoku();
     }
 
     @Before
     public void setUp() {
-        this.sudoku = new Sudoku();
+        Scanner lukija = new Scanner(System.in);
+        Peli peli = new Peli(lukija);
+        peli.kaynnista();
+
     }
 
-    @After
-    public void tearDown() {
+    @Test
+    public void kaynnistaminenAlustaa() {
+        assertNotNull(sudoku.getKentta());
+        assertNotNull(sudoku.getRatkaisu());
     }
-
 }

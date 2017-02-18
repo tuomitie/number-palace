@@ -12,7 +12,7 @@
 
         <!-- Block Checks -->
 
-<!--    <module name="JavadocMethod">
+        <module name="JavadocMethod">
             <property name="scope" value="public"/>
             <property name="allowMissingParamTags" value="false"/>
             <property name="allowMissingPropertyJavadoc" value="true"/>
@@ -25,7 +25,7 @@
             <property name="scope" value="public"/>
             <property name="checkEmptyJavadoc" value="true"/>
         </module>
--->
+
         <module name='EmptyBlock' />
         <module name='LeftCurly' />
         <module name='NeedBraces' />
@@ -94,6 +94,9 @@
         <property name='max' value='200' />
     </module>
     
+    <module name="SuppressionFilter">
+        <property name="file" value="mysuppressions.xml" />
+    </module>
 
 
 </module>

@@ -38,4 +38,14 @@ Muista Sudokusovelluksista erottuakseen pelissä voisi mahdollisesti olla toimin
 
 ![Luokkakaavio 0.1.0](/dokumentaatio/kuvat/Luokkakaavio.png "Luokkakaavio 0.1.0")
 
+**Sekvenssikaaviot**
+
+Kaavio kuvaa järjestelmässä tapahtuvia kutsuja, kun pelaaja painaa peliruudulla olevaa alkiota, jonka alkuarvo on 9. Uudeksi arvoksi tulee Sudokun numerotaulukossa 0, ja GUI:ssa napin tekstikenttä tyhjennetään.
+
+![Sekvenssikaavio kasvata](/dokumentaatio/kuvat/sekvenssikaavio-kasvata.png "Sekvenssikaavio kasvata")
+
+Alempi kaavio kuvaa välitettyjä kutsuja kun pelaaja painaa GUI:n Tarkista-painiketta, kun kaikki alkiot on täytetty oikein. Sudoku-luokka tarkistaa vastauksen, ja käyttöliittymä näyttää pelaajalle PopUp-ikkunan, jossa lukee innostava teksti.
+
+![Sekvenssikaavio tarkista](/dokumentaatio/kuvat/sekvenssi-tarkista.png "Sekvenssikaavio tarkista")
+
 :japanese_castle: @tuomitie

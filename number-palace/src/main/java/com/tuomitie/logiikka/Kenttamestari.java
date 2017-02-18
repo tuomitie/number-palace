@@ -18,6 +18,9 @@ public class Kenttamestari {
     private File tiedosto;
     private List<Kentta> kenttaLista;
 
+    /**
+     * Initializes the class with a preset file used to store the fields and a list to store them in.
+     */
     public Kenttamestari() {
         lukija = null;
         tiedosto = new File("src/main/resources/pohjat.txt");
@@ -27,7 +30,7 @@ public class Kenttamestari {
     /**
      * Tries to read the file specified in the constructor.
      *
-     * @return
+     * @return The scanner.
      */
     public Scanner haeTiedosto() {
         try {
@@ -54,6 +57,7 @@ public class Kenttamestari {
 
     /**
      * Returns a random Kentta from the list.
+     * @return One Kentta item.
      */
     public Kentta annaKentta() {
         Collections.shuffle(kenttaLista);       // Randomize the items on the list

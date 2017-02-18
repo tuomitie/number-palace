@@ -35,8 +35,8 @@ public class Kayttoliittyma implements Runnable {
         pelialue = new JPanel(new GridLayout(3, 3));
         blokit = new JPanel[3][3];
         alkiot = new JButton[9][9];
-        napit = new ArrayList<>(); 
-        
+        napit = new ArrayList<>();
+
         numeroFontti = new Font("Sans-Serif", Font.BOLD, 21);
     }
 
@@ -62,7 +62,7 @@ public class Kayttoliittyma implements Runnable {
         Border compound = new CompoundBorder(margin, line);
         pelialue.setBorder(compound);
 
-        JPanel painikkeet = new JPanel((new GridLayout(3, 1, 0, 10)));   // Control button panel
+        JPanel painikkeet = new JPanel((new GridLayout(4, 1, 0, 10)));   // Control button panel
         luoKontrollit(painikkeet);
 
         container.add(pelialue);
@@ -86,7 +86,7 @@ public class Kayttoliittyma implements Runnable {
     }
 
     public void alustaRuudukko() {
-        int[][] taulukko = sudoku.haeTilanne();
+        int[][] taulukko = sudoku.getTilanne();
         for (int x = 0; x < 9; x++) {               // Rows
             for (int y = 0; y < 9; y++) {           // Cells
                 JButton button = new JButton(" ");  // Init with empty string
@@ -108,9 +108,9 @@ public class Kayttoliittyma implements Runnable {
     }
 
     public void naytaRatkaisu() {
-        int[][] ratkaisu = sudoku.haeRatkaisu();
+        int[][] ratkaisu = sudoku.getRatkaisu();
         for (int x = 0; x < 9; x++) {
-            for (int y = 0; y < 9; y++) { 
+            for (int y = 0; y < 9; y++) {
                 alkiot[x][y].setText("" + ratkaisu[x][y]);
                 alkiot[x][y].setEnabled(false);
             }
@@ -118,8 +118,12 @@ public class Kayttoliittyma implements Runnable {
     }
 
     public void luoKontrollit(JPanel painikkeet) {
+        JLabel vaikeustaso = new JLabel("Diff. " + sudoku.getKentta().getVaikeustaso());
+        vaikeustaso.setFont(new Font("Sans-Serif", Font.BOLD, 25));
+        vaikeustaso.setHorizontalTextPosition(JLabel.CENTER);
+        painikkeet.add(vaikeustaso);
+
         JButton tarkista = new JButton("Tarkista");     // A button to check if the board matches the solution
-//        tarkista.setEnabled(false);                     // Disabled until board is full
         tarkista.addActionListener(new ToimintojenKuuntelija("tarkista", this, sudoku));
         napit.add(tarkista);                            // Add the button to the list
         painikkeet.add(tarkista);                       // Add it to the panel
@@ -131,7 +135,7 @@ public class Kayttoliittyma implements Runnable {
 
         JButton keskeyta = new JButton("Keskeytä");     // A button to rage-quit
         keskeyta.addActionListener(new ToimintojenKuuntelija("keskeyta", this, sudoku));
-        keskeyta.setEnabled(false); 
+        keskeyta.setEnabled(false);
         napit.add(keskeyta);
         painikkeet.add(keskeyta);
 
@@ -140,16 +144,16 @@ public class Kayttoliittyma implements Runnable {
             nappi.setFocusPainted(false);
         }
     }
-    
+
     public void luoPopUp(String viesti) {
         JOptionPane.showMessageDialog(frame, viesti);
     }
-    
+
     public void disabloi(String painike) {
-        for (JButton nappi : napit ){
-            if(nappi.getText().equalsIgnoreCase(painike)) {
+        for (JButton nappi : napit) {
+            if (nappi.getText().equalsIgnoreCase(painike)) {
                 nappi.setEnabled(false);
-        }
+            }
         }
     }
 
