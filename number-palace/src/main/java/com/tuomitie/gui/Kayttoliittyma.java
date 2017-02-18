@@ -24,6 +24,7 @@ public class Kayttoliittyma implements Runnable {
     private JPanel pelialue;
     private JPanel[][] blokit;
     private JButton[][] alkiot;
+    private List<JButton> napit;
 
     private Color reunat;
     private Font numeroFontti;
@@ -34,6 +35,8 @@ public class Kayttoliittyma implements Runnable {
         pelialue = new JPanel(new GridLayout(3, 3));
         blokit = new JPanel[3][3];
         alkiot = new JButton[9][9];
+        napit = new ArrayList<>(); 
+        
         numeroFontti = new Font("Sans-Serif", Font.BOLD, 21);
     }
 
@@ -115,26 +118,38 @@ public class Kayttoliittyma implements Runnable {
     }
 
     public void luoKontrollit(JPanel painikkeet) {
-        List<JButton> napit = new ArrayList<>();        // Create a list for the control buttons
         JButton tarkista = new JButton("Tarkista");     // A button to check if the board matches the solution
-        tarkista.setEnabled(false);                     // Disabled until board is full
-        tarkista.addActionListener(new ToimintojenKuuntelija("tarkista", this));
+//        tarkista.setEnabled(false);                     // Disabled until board is full
+        tarkista.addActionListener(new ToimintojenKuuntelija("tarkista", this, sudoku));
         napit.add(tarkista);                            // Add the button to the list
         painikkeet.add(tarkista);                       // Add it to the panel
 
         JButton vastaus = new JButton("Katso vastaus"); // A button to quit and check the solution
-        vastaus.addActionListener(new ToimintojenKuuntelija("vastaus", this));
+        vastaus.addActionListener(new ToimintojenKuuntelija("vastaus", this, sudoku));
         napit.add(vastaus);
         painikkeet.add(vastaus);
 
         JButton keskeyta = new JButton("Keskeytä");     // A button to rage-quit
-        keskeyta.addActionListener(new ToimintojenKuuntelija("keskeyta", this));
+        keskeyta.addActionListener(new ToimintojenKuuntelija("keskeyta", this, sudoku));
+        keskeyta.setEnabled(false); 
         napit.add(keskeyta);
         painikkeet.add(keskeyta);
 
         for (JButton nappi : napit) {                   // Common styling for all the buttons
             nappi.setContentAreaFilled(false);
             nappi.setFocusPainted(false);
+        }
+    }
+    
+    public void luoPopUp(String viesti) {
+        JOptionPane.showMessageDialog(frame, viesti);
+    }
+    
+    public void disabloi(String painike) {
+        for (JButton nappi : napit ){
+            if(nappi.getText().equalsIgnoreCase(painike)) {
+                nappi.setEnabled(false);
+        }
         }
     }
 

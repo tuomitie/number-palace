@@ -306,9 +306,15 @@ public class SudokuTest {
         assertEquals(osat[2], 2);
     }
 
-//    @Test
-//    public void ratkaisunTarkistaminenToimii() {
-//        tilanne = sudoku.haeRatkaisu();
-//        assertTrue(sudoku.tarkistaRatkaisu());
-//    }
+    @Test
+    public void ratkaisunTarkistaminenToimii() {
+        for (int a = 0; a < 9; a++) {               // Rows
+            for (int b = 0; b < 9; b++) {           // Cells
+                if (tilanne[a][b] == 0) {
+                    tilanne[a][b] = ratkaisu[a][b];
+                }
+            }
+        }
+        assertTrue(sudoku.tarkistaRatkaisu());
+    }
 }

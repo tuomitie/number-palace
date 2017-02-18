@@ -34,6 +34,5 @@ public class KlikkauksenKuuntelija implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         kasvata();
-        System.out.print("" + x + y + " ");
     }
 }
