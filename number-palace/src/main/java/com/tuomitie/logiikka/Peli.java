@@ -1,6 +1,8 @@
 package com.tuomitie.logiikka;
 
 import java.util.Scanner;
+import com.tuomitie.gui.Valikko;
+import javax.swing.SwingUtilities;
 
 /**
  * Provides generic game controls like playing one turn, asking for input and
@@ -13,6 +15,7 @@ public class Peli {
 
     private Scanner lukija;
     private Sudoku sudoku;
+    private Valikko valikko;
 
     /**
      * Initializes the game.
@@ -21,6 +24,7 @@ public class Peli {
      */
     public Peli(Scanner lukija) {
         this.lukija = lukija;
+        this.valikko = new Valikko(this);
         this.sudoku = new Sudoku();
     }
 
@@ -34,6 +38,8 @@ public class Peli {
         sudoku.alusta();
 
         sudoku.tulosta(sudoku.getRatkaisu());
+        
+        SwingUtilities.invokeLater(valikko);
         
 //        while (true) {
 //            System.out.print(

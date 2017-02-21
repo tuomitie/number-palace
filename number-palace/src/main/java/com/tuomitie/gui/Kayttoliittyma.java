@@ -54,19 +54,24 @@ public class Kayttoliittyma implements Runnable {
     }
 
     private void luoKomponentit(Container container) {
-        container.setLayout(new FlowLayout());
+
+        Savypaneeli paneeli = new Savypaneeli(Color.CYAN, Color.MAGENTA);
+        paneeli.setLayout(new FlowLayout());
+        container.add(paneeli);
 
         pelialue.setPreferredSize(new Dimension(360, 360));     // The game board
         Border line = new LineBorder(Color.GRAY);
         Border margin = new EmptyBorder(10, 0, 10, 10);
         Border compound = new CompoundBorder(margin, line);
+        pelialue.setOpaque(false);
         pelialue.setBorder(compound);
 
-        JPanel painikkeet = new JPanel((new GridLayout(4, 1, 0, 10)));   // Control button panel
+        JPanel painikkeet = new JPanel((new GridLayout(4, 0, 0, 10)));   // Control button panel
         luoKontrollit(painikkeet);
+        painikkeet.setOpaque(false);
 
-        container.add(pelialue);
-        container.add(painikkeet);
+        paneeli.add(pelialue);
+        paneeli.add(painikkeet);
 
         luoBlokit();                                            // Create the 3x3 sub-blocks for the board
         alustaRuudukko();                   // Create the number cells
@@ -121,6 +126,7 @@ public class Kayttoliittyma implements Runnable {
         JLabel vaikeustaso = new JLabel("Diff. " + sudoku.getKentta().getVaikeustaso());
         vaikeustaso.setFont(new Font("Sans-Serif", Font.BOLD, 25));
         vaikeustaso.setHorizontalTextPosition(JLabel.CENTER);
+        vaikeustaso.setForeground(Color.orange);
         painikkeet.add(vaikeustaso);
 
         JButton tarkista = new JButton("Tarkista");     // A button to check if the board matches the solution
@@ -140,7 +146,8 @@ public class Kayttoliittyma implements Runnable {
         painikkeet.add(keskeyta);
 
         for (JButton nappi : napit) {                   // Common styling for all the buttons
-            nappi.setContentAreaFilled(false);
+            nappi.setContentAreaFilled(true);
+            nappi.setBackground(Color.white);
             nappi.setFocusPainted(false);
         }
     }
