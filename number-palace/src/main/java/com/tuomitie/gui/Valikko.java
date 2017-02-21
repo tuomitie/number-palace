@@ -4,26 +4,23 @@ import com.tuomitie.logiikka.Peli;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.ButtonGroup;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
-import javax.swing.border.Border;
-import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 
 public class Valikko implements Runnable {
 
@@ -32,6 +29,11 @@ public class Valikko implements Runnable {
     private JFrame frame;
     private List<JButton> napit;
 
+    /**
+     * The main menu GUI used to start the game.
+     *
+     * @param peli The game instance passed from the Peli class.
+     */
     public Valikko(Peli peli) {
         this.peli = peli;
         napit = new ArrayList<>();
@@ -41,8 +43,8 @@ public class Valikko implements Runnable {
     public void run() {
         frame = new JFrame("number-palace");
 
-        frame.setPreferredSize(new Dimension(350, 270));
-        frame.setLocation(400, 275);
+        frame.setPreferredSize(new Dimension(400, 270));
+        frame.setLocation(380, 275);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         luoKomponentit(frame.getContentPane());
@@ -56,10 +58,15 @@ public class Valikko implements Runnable {
         Savypaneeli paneeli = new Savypaneeli(Color.CYAN, Color.MAGENTA);
         paneeli.setLayout(new GridLayout(1, 2, 0, 0));
 
-        ImageIcon icon = createImageIcon("number-palace-header.png", "number palace logo");
-        JLabel headeri = new JLabel(icon);
-        container.add(headeri);
-        
+//        try {
+//            ImageIcon icon;
+//            icon = createImageIcon("number-palace-header.png", "number palace logo");
+//            JLabel headeri = new JLabel(icon);
+//            container.add(headeri);
+//        } catch (IOException ex) {
+//            System.err.println("Kuvaa ei löytynyt.");
+//        }
+
         container.add(paneeli);
 
         JPanel scoret = new JPanel((new GridLayout(8, 0, 0, 0)));   // High Scores pane
@@ -109,15 +116,12 @@ public class Valikko implements Runnable {
 
     }
 
-    /**
-     * Returns an ImageIcon, or null if the path was invalid.
-     */
-    protected ImageIcon createImageIcon(String path, String description) {
-        java.net.URL imgURL = getClass().getResource(path);
-        if (imgURL != null) {
-            return new ImageIcon(imgURL, description);
+    protected ImageIcon createImageIcon(String filename, String description) throws IOException {
+        InputStream is = getClass().getClassLoader().getResourceAsStream("filename");
+        BufferedImage bf = ImageIO.read(is);
+        if (is != null) {
+            return new ImageIcon(filename, description);
         } else {
-            System.err.println("Kuvaa ei löytynyt: " + path);
             return null;
         }
     }

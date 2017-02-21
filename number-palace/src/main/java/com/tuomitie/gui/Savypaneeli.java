@@ -7,11 +7,20 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
+/**
+ * A custom JPanel that has a color gradient running across it.
+ * @author tuomas
+ */
 public class Savypaneeli extends JPanel {
 
     private Color alkuvari;
     private Color loppuvari;
 
+    /**
+     * Constructor takes the two colors used in the gradient.
+     * @param alkuvari Start color.
+     * @param loppuvari End color.
+     */
     public Savypaneeli(Color alkuvari, Color loppuvari) {
         super();
         this.alkuvari = alkuvari;

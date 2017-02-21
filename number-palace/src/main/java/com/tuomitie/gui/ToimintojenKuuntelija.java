@@ -25,6 +25,11 @@ public class ToimintojenKuuntelija implements ActionListener {
         this.sudoku = sudoku;
     }
 
+    /**
+     * Alternative constuctor to use with main menu controls.
+     * @param toiminto The action in question.
+     * @param peli The Game instance.
+     */
     public ToimintojenKuuntelija(String toiminto, Peli peli) {
         this.toiminto = toiminto;
         this.peli = peli;
@@ -46,6 +51,7 @@ public class ToimintojenKuuntelija implements ActionListener {
             }
         } else if (toiminto.equals("aloita")) {
             // TODO Implement start screen functionality
+            System.out.println("Aloita painettu.");
         }
     }
 
