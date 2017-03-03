@@ -1,6 +1,7 @@
 package com.tuomitie.logiikka;
 
 import com.tuomitie.gui.Kayttoliittyma;
+import com.tuomitie.gui.Valikko;
 import java.util.Scanner;
 import javax.swing.SwingUtilities;
 
@@ -20,8 +21,7 @@ public class Paaohjelma {
      * @param args You know what this is.
      */
     public static void main(String[] args) {
-        Scanner lukija = new Scanner(System.in);
-        Peli peli = new Peli(lukija);
-        peli.kaynnista();
+        Valikko valikko = new Valikko(new Peli());
+        SwingUtilities.invokeLater(valikko);
     }
 }

@@ -28,6 +28,7 @@ public class Valikko implements Runnable {
 
     private JFrame frame;
     private List<JButton> napit;
+    private JComboBox vaikeusLista;
 
     /**
      * The main menu GUI used to start the game.
@@ -66,7 +67,6 @@ public class Valikko implements Runnable {
 //        } catch (IOException ex) {
 //            System.err.println("Kuvaa ei löytynyt.");
 //        }
-
         container.add(paneeli);
 
         JPanel scoret = new JPanel((new GridLayout(8, 0, 0, 0)));   // High Scores pane
@@ -102,16 +102,17 @@ public class Valikko implements Runnable {
 
         JLabel vaikeusLabel = new JLabel("Valitse vaikeustaso:");
         kontrollipaneeli.add(vaikeusLabel);
-        String[] vaikeustasot = {"   iisi", "   semi", "   kova"};
-        JComboBox vaikeusLista = new JComboBox(vaikeustasot);
+        String[] vaikeustasot = {"   easy", "   semi", "   hard", "   random"};
+        vaikeusLista = new JComboBox(vaikeustasot);
         vaikeusLista.setPreferredSize(new Dimension(60, 10));
         vaikeusLista.setSelectedIndex(1);
         kontrollipaneeli.add(vaikeusLista);
 
-        JButton aloita = new JButton("Uusi peli");     // A button to check if the board matches the solution
+        JButton aloita = new JButton("New game");     // A button to check if the board matches the solution
         aloita.setContentAreaFilled(true);
         aloita.setBackground(Color.white);
         aloita.setFocusPainted(false);
+        aloita.addActionListener(new ToimintojenKuuntelija("start", this, peli));
         kontrollipaneeli.add(aloita);
 
     }
@@ -128,5 +129,13 @@ public class Valikko implements Runnable {
 
     public JFrame getFrame() {
         return frame;
+    }
+
+    public Peli getPeli() {
+        return peli;
+    }
+
+    public JComboBox getVaikeusLista() {
+        return vaikeusLista;
     }
 }

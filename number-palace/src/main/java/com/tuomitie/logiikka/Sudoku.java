@@ -16,10 +16,10 @@ import javax.swing.SwingUtilities;
  */
 public class Sudoku {
 
+    private Peli peli;
     private Kentta kentta;              // The Kentta (Field) object contains the difficulty level, solution and start view of the game
     private int[][] tilanne;            // Tilanne contains the state of the game as it stands
-    private final int[][] ratkaisu;
-    private List<int[]> siirrot;
+    private int[][] ratkaisu;
 
     private Kayttoliittyma kayttoliittyma;
 
@@ -28,9 +28,9 @@ public class Sudoku {
      *
      * @see com.tuomitie.logiikka.Sudoku#alusta()
      */
-    public Sudoku() {
-        siirrot = new ArrayList<>();
-        alusta();
+    public Sudoku(Peli peli) {
+        this.peli = peli;
+        alusta("random");
         tilanne = luoRuudukko(kentta.taulukkoNumeroina(kentta.getNakyma()));
         ratkaisu = luoRuudukko(kentta.taulukkoNumeroina(kentta.getVastaus()));
         kayttoliittyma = new Kayttoliittyma(this);
@@ -40,12 +40,11 @@ public class Sudoku {
      * Calls the Kenttamestari class, which handles the different game layouts,
      * creates the player view and solution based on the data, and invokes GUI.
      */
-    public void alusta() {
+    public void alusta(String vaikeustaso) {
         Kenttamestari kenttamestari = new Kenttamestari();      // Set up the game by creating a new grid manager
         kenttamestari.haeTiedosto();
         kenttamestari.haeKaikkiKentatListalle();
-        kentta = kenttamestari.annaKentta();                    // Get one grid from the manager and use it for the rest of the game        
-        SwingUtilities.invokeLater(kayttoliittyma);
+        kentta = kenttamestari.annaKenttaVaikeustasolla(vaikeustaso);                    // Get one grid from the manager and use it for the rest of the game        
     }
 
     /**
@@ -117,7 +116,8 @@ public class Sudoku {
     /**
      * Check if user grid matches the given solution.
      *
-     * @return A boolean value true if the player board matches the solution exactly.
+     * @return A boolean value true if the player board matches the solution
+     * exactly.
      */
     public boolean tarkistaRatkaisu() {
         boolean oikein = true;
@@ -134,6 +134,7 @@ public class Sudoku {
 
     /**
      * Get a specified cell of the player board. Checks for valid coordinates.
+     *
      * @param a Board row number.
      * @param b Board column number.
      * @return The stored number or -1 if invalid coordinates.
@@ -146,14 +147,6 @@ public class Sudoku {
         }
     }
 
-    /**
-     * Get the number of moves made by the player.
-     * @return The size of the list containing the moves = amount of moves.
-     */
-    public int haeSiirtojenMaara() {
-        return siirrot.size();
-    }
-
     public int[][] getTilanne() {
         return tilanne;
     }
@@ -164,5 +157,13 @@ public class Sudoku {
 
     public Kentta getKentta() {
         return kentta;
+    }
+
+    public Kayttoliittyma getKayttoliittyma() {
+        return kayttoliittyma;
+    }
+
+    public Peli getPeli() {
+        return peli;
     }
 }

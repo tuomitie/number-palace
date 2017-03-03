@@ -21,8 +21,8 @@ public class SudokuTest {
 
     @Before
     public void setUp() {
-        sudoku = new Sudoku();
-        sudoku.alusta();
+        sudoku = new Sudoku(new Peli());
+        sudoku.alusta("random");
         this.ratkaisu = sudoku.getRatkaisu();
         this.tilanne = sudoku.getTilanne();
         this.kentta = sudoku.getKentta();

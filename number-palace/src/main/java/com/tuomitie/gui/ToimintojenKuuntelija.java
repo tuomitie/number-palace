@@ -4,6 +4,8 @@ import com.tuomitie.logiikka.Peli;
 import com.tuomitie.logiikka.Sudoku;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 public class ToimintojenKuuntelija implements ActionListener {
 
@@ -11,6 +13,7 @@ public class ToimintojenKuuntelija implements ActionListener {
     private Kayttoliittyma kayttoliittyma;
     private Sudoku sudoku;
     private Peli peli;
+    private Valikko valikko;
 
     /**
      * ActionListener for the user control buttons of the GUI.
@@ -27,11 +30,13 @@ public class ToimintojenKuuntelija implements ActionListener {
 
     /**
      * Alternative constuctor to use with main menu controls.
+     *
      * @param toiminto The action in question.
      * @param peli The Game instance.
      */
-    public ToimintojenKuuntelija(String toiminto, Peli peli) {
+    public ToimintojenKuuntelija(String toiminto, Valikko valikko, Peli peli) {
         this.toiminto = toiminto;
+        this.valikko = valikko;
         this.peli = peli;
     }
 
@@ -39,19 +44,28 @@ public class ToimintojenKuuntelija implements ActionListener {
      * Handles the button specific actions that should happen when clicked.
      */
     public void suorita() {
-        if (toiminto.equals("vastaus")) {
-            kayttoliittyma.naytaRatkaisu();
-            kayttoliittyma.disabloi("tarkista");
-            kayttoliittyma.disabloi("katso vastaus");
-        } else if (toiminto.equals("tarkista")) {
+        // Main menu 
+        if (toiminto.equals("start") && peli != null) {
+            String valinta = "" + valikko.getVaikeusLista().getSelectedItem();
+            peli.kaynnista(valinta);
+        }
+
+        // Player board controls
+        if (toiminto.equals("inspect")) {
             if (sudoku.tarkistaRatkaisu()) {
-                kayttoliittyma.luoPopUp("Oikein!!!");
+                kayttoliittyma.luoPopUp("You got it, champ!");
             } else {
-                kayttoliittyma.luoPopUp("Väärin meni.");
+                kayttoliittyma.luoPopUp("That's not correct. Keep trying!");
             }
-        } else if (toiminto.equals("aloita")) {
-            // TODO Implement start screen functionality
-            System.out.println("Aloita painettu.");
+        }
+        if (toiminto.equals("solution")) {
+            kayttoliittyma.naytaRatkaisu();
+            kayttoliittyma.disabloi("inspect");
+            kayttoliittyma.disabloi("solution");
+        }
+        if (toiminto.equals("quit")) {
+            kayttoliittyma.luoDialogi("Are you sure you want to end the game and return to main menu?");
+
         }
     }
 

@@ -13,7 +13,6 @@ import javax.swing.SwingUtilities;
  */
 public class Peli {
 
-    private Scanner lukija;
     private Sudoku sudoku;
     private Valikko valikko;
 
@@ -22,10 +21,9 @@ public class Peli {
      *
      * @param lukija The Scanner object passed by the main method.
      */
-    public Peli(Scanner lukija) {
-        this.lukija = lukija;
+    public Peli() {
+        this.sudoku = new Sudoku(this);
         this.valikko = new Valikko(this);
-        this.sudoku = new Sudoku();
     }
 
     /**
@@ -34,79 +32,21 @@ public class Peli {
      *
      * @see com.tuomitie.logiikka.Sudoku#alusta()
      */
-    public void kaynnista() {
-        sudoku.alusta();
-
-        sudoku.tulosta(sudoku.getRatkaisu());
-        
-        SwingUtilities.invokeLater(valikko);
-        
-//        while (true) {
-//            System.out.print(
-//                    "\nNumber Palace!\n"
-//                    + " a uusi peli\n"
-//                    + " x lopeta\n"
-//                    + "\n");
-//            String valinta = lukija.nextLine();
-//            if (valinta.equals("x")) {
-//                break;
-//            }
-//            suorita(valinta);   // Separated into another method to support future functionalities
-//        }
+    public void kaynnista(String vaikeustaso) {
+        sudoku.alusta(vaikeustaso);
+        SwingUtilities.invokeLater(sudoku.getKayttoliittyma());
     }
 
-    /**
-     * A remnant of the command line interface. To be removed with full GUI
-     * implementation.
-     *
-     * @param valinta
-     */
-//    public void suorita(String valinta) {
-//        if (valinta.equals("a")) {
-//            pelaaKierros();
-//        } else {
-//            System.out.print("> ");
-//        }
-//    }
+    public void uusiPeli() {
+        sudoku = new Sudoku(this);
+        sudoku.alusta("random");
+    }
 
-    /**
-     * Command line controls input checks. Might become obsolete with GUI or be
-     * rewritten.
-     */
-//    public void pelaaKierros() {
-//        String syote = "";
-//        while (true) {
-//            tulostaTilanne();
-//            syote = pyydaSyote();
-//            if (syote.equals("x")) {
-//                break;
-//            } else {
-//                sudoku.asetaNumero(syote);
-//                if (sudoku.haeSiirtojenMaara() > 40) {   // Only start checking for completion after 40 turns
-//                    if (sudoku.tarkistaRatkaisu()) {
-//                        System.out.println("Jee, voitit!");
-//                    }
-//                }
-//            }
-//        }
-//    }
+    public Sudoku getSudoku() {
+        return sudoku;
+    }
 
-    /**
-     * Method to print out the player board.
-     */
-//    public void tulostaTilanne() {
-//        sudoku.tulosta(sudoku.getTilanne());
-//    }
-
-    /**
-     * Asks for keyboard input for coordinates. Obsolete with full GUI.
-     *
-     * @return
-     */
-//    public String pyydaSyote() {
-//        System.out.print("Anna koordinaatit ja numero (muodossa 123) - x lopettaa\n"
-//                + "> ");
-//        String syote = lukija.nextLine();
-//        return syote;
-//    }
+    public Valikko getValikko() {
+        return valikko;
+    }
 }

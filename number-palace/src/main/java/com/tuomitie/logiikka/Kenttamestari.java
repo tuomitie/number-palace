@@ -18,16 +18,23 @@ public class Kenttamestari {
     private Scanner lukija;
     private InputStream is;
     private File tiedosto;
-    private List<Kentta> kenttaLista;
+    private List<Kentta> kaikkiKentat;
+    private List<Kentta> helpotKentat;
+    private List<Kentta> semiKentat;
+    private List<Kentta> vaikeatKentat;
 
     /**
-     * Initializes the class with a preset file used to store the fields and a list to store them in.
+     * Initializes the class with a preset file used to store the fields and a
+     * list to store them in.
      */
     public Kenttamestari() {
         lukija = null;
 //      tiedosto = new File("src/main/resources/pohjat.txt");
         is = getClass().getClassLoader().getResourceAsStream("pohjat.txt");
-        kenttaLista = new ArrayList<>();
+        kaikkiKentat = new ArrayList<>();
+        helpotKentat = new ArrayList<>();
+        semiKentat = new ArrayList<>();
+        vaikeatKentat = new ArrayList<>();
     }
 
     /**
@@ -53,17 +60,42 @@ public class Kenttamestari {
             String rivi = lukija.nextLine();
             String[] osat = rivi.split(" ");                                // Read each line from /src/main/resources/pohjat.txt
             int vaikeustaso = Integer.valueOf(osat[0]);                     // and split into diff. level, player view and solution
-            kenttaLista.add(new Kentta(vaikeustaso, osat[1], osat[2]));     // make a list of these new bases
+            kaikkiKentat.add(new Kentta(vaikeustaso, osat[1], osat[2]));     // make a list of these new bases
+            if (vaikeustaso <= 125) {
+                helpotKentat.add(new Kentta(vaikeustaso, osat[1], osat[2]));
+            } else if (vaikeustaso <= 225) {
+                semiKentat.add(new Kentta(vaikeustaso, osat[1], osat[2]));
+            } else if (vaikeustaso > 225) {
+                vaikeatKentat.add(new Kentta(vaikeustaso, osat[1], osat[2]));
+            }
         }
         lukija.close();                                                     // Close the scanner opened in haeTiedosto
     }
 
     /**
      * Returns a random Kentta from the list.
+     *
      * @return One Kentta item.
      */
     public Kentta annaKentta() {
-        Collections.shuffle(kenttaLista);       // Randomize the items on the list
-        return kenttaLista.get(0);              // and return one
+        Collections.shuffle(kaikkiKentat);       // Randomize the items on the list
+        return kaikkiKentat.get(0);              // and return one
+    }
+
+    public Kentta annaKenttaVaikeustasolla(String taso) {
+        if (taso.contains("easy")) {
+            Collections.shuffle(helpotKentat);       // Randomize the items on the list
+            return helpotKentat.get(0);
+        } else if (taso.contains("semi")) {
+            Collections.shuffle(semiKentat);       // Randomize the items on the list
+            return semiKentat.get(0);
+        } else if (taso.contains("hard")) {
+            Collections.shuffle(vaikeatKentat);       // Randomize the items on the list
+            return vaikeatKentat.get(0);
+        } else {
+            Collections.shuffle(kaikkiKentat);       // Randomize the items on the list
+            return kaikkiKentat.get(0);
+        }
+
     }
 }

@@ -13,14 +13,14 @@ public class PeliTest {
     private Sudoku sudoku;
 
     public PeliTest() {
-        this.sudoku = new Sudoku();
+        this.sudoku = new Sudoku(new Peli());
     }
 
     @Before
     public void setUp() {
         Scanner lukija = new Scanner(System.in);
-        Peli peli = new Peli(lukija);
-        peli.kaynnista();
+        Peli peli = new Peli();
+        peli.kaynnista("random");
 
     }
 

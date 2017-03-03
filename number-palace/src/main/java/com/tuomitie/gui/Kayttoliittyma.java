@@ -122,28 +122,27 @@ public class Kayttoliittyma implements Runnable {
         }
     }
 
-    public void luoKontrollit(JPanel painikkeet) {
-        JLabel vaikeustaso = new JLabel("Diff. " + sudoku.getKentta().getVaikeustaso());
-        vaikeustaso.setFont(new Font("Sans-Serif", Font.BOLD, 25));
+    public void luoKontrollit(JPanel painikkeet) {  
+        JLabel vaikeustaso = new JLabel("Difficulty " + vaikeustasoTahtina(sudoku.getKentta().getVaikeustaso()));
+        vaikeustaso.setFont(new Font("Sans-Serif", Font.BOLD, 22));
         vaikeustaso.setHorizontalTextPosition(JLabel.CENTER);
         vaikeustaso.setForeground(Color.orange);
         painikkeet.add(vaikeustaso);
 
-        JButton tarkista = new JButton("Tarkista");     // A button to check if the board matches the solution
-        tarkista.addActionListener(new ToimintojenKuuntelija("tarkista", this, sudoku));
-        napit.add(tarkista);                            // Add the button to the list
-        painikkeet.add(tarkista);                       // Add it to the panel
+        JButton inspect = new JButton("Inspect");     // A button to check if the board matches the solution
+        inspect.addActionListener(new ToimintojenKuuntelija("inspect", this, sudoku));
+        napit.add(inspect);                            // Add the button to the list
+        painikkeet.add(inspect);                       // Add it to the panel
 
-        JButton vastaus = new JButton("Katso vastaus"); // A button to quit and check the solution
-        vastaus.addActionListener(new ToimintojenKuuntelija("vastaus", this, sudoku));
-        napit.add(vastaus);
-        painikkeet.add(vastaus);
+        JButton solution = new JButton("See the Solution"); // A button to quit and check the solution
+        solution.addActionListener(new ToimintojenKuuntelija("solution", this, sudoku));
+        napit.add(solution);
+        painikkeet.add(solution);
 
-        JButton keskeyta = new JButton("Keskeytä");     // A button to rage-quit
-        keskeyta.addActionListener(new ToimintojenKuuntelija("keskeyta", this, sudoku));
-        keskeyta.setEnabled(false);
-        napit.add(keskeyta);
-        painikkeet.add(keskeyta);
+        JButton quit = new JButton("Quit");     // A button to rage-quit
+        quit.addActionListener(new ToimintojenKuuntelija("quit", this, sudoku));
+        napit.add(quit);
+        painikkeet.add(quit);
 
         for (JButton nappi : napit) {                   // Common styling for all the buttons
             nappi.setContentAreaFilled(true);
@@ -154,6 +153,23 @@ public class Kayttoliittyma implements Runnable {
 
     public void luoPopUp(String viesti) {
         JOptionPane.showMessageDialog(frame, viesti);
+}
+
+    public void luoDialogi(String viesti) {
+        Object[] options = {"Yes, end this.", "Let me reconsider."};
+        int n = JOptionPane.showOptionDialog(frame,
+                viesti,
+                "Ending the game",      // Dialog title
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE,
+                null,                   // Do not use a custom Icon
+                options,                // The titles of buttons
+                options[0]);            // Default button title
+        if (n == JOptionPane.YES_OPTION) {
+            pelialue.removeAll();       // Fixes a glitch on successive game rounds
+            this.sudoku.getPeli().uusiPeli();
+            frame.dispose();            // Close the game frame
+        }
     }
 
     public void disabloi(String painike) {
@@ -161,6 +177,16 @@ public class Kayttoliittyma implements Runnable {
             if (nappi.getText().equalsIgnoreCase(painike)) {
                 nappi.setEnabled(false);
             }
+        }
+    }
+    
+    public String vaikeustasoTahtina(int taso) {
+        if (taso < 125) {
+            return "*";
+        } else if (taso > 125 && taso < 225) {
+            return "**";
+        } else {
+            return "***";
         }
     }
 
