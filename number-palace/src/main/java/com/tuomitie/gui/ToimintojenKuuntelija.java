@@ -55,7 +55,7 @@ public class ToimintojenKuuntelija implements ActionListener {
             if (sudoku.tarkistaRatkaisu()) {
                 kayttoliittyma.luoPopUp("You got it, champ!");
             } else {
-                kayttoliittyma.luoPopUp("That's not correct. Keep trying!");
+                kayttoliittyma.luoPopUp("That's doesn't seem to be correct.\nKeep trying!");
             }
         }
         if (toiminto.equals("solution")) {
@@ -65,7 +65,6 @@ public class ToimintojenKuuntelija implements ActionListener {
         }
         if (toiminto.equals("quit")) {
             kayttoliittyma.luoDialogi("Are you sure you want to end the game and return to main menu?");
-
         }
     }
 

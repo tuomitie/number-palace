@@ -15,9 +15,9 @@ Päivä | Tunnit | Kuvaus
 17.02.2017 | 3 | Korjattu näkymän ja ratkaisun ristiriidat. Lisätty painike ratkaisun näyttämiseen.
 18.02.2017 | 5 | Javadoc ja testit kuntoon, rivikattavuus nyt 89%. Sekvenssikaaviot lisätty. Painikkeiden toiminta ja ratkaisun tarkastus toimii.
 21.02.2017 | 8 | Demo laitoksella, GUI:ta väritetty ja aloitusvalikkoa aloitettu - ei vielä toiminnallisuutta.
+03.03.2017 | 8 | Toiminnallisuudet lisätty vaikeustason valintaan ja modaali-ikkuna lopetukseen. Logo lisätty alkunäkymään.
 
 
 **ToDo:**
-* Logon liittäminen aloitusvalikkoon.
-* Aloitusvalikon toiminnallisuudet (Highscoret listalle ja vaikeustason valinta + napit).
+* Aloitusvalikon toiminnallisuudet (Highscoret listalle).
 * Ainakin tutustumista Sudokujen generointiin. Mahdollinen jatkokehityskohde?

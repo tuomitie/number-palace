@@ -1,6 +1,7 @@
 package com.tuomitie.gui;
 
 import com.tuomitie.logiikka.Peli;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -44,8 +45,8 @@ public class Valikko implements Runnable {
     public void run() {
         frame = new JFrame("number-palace");
 
-        frame.setPreferredSize(new Dimension(400, 270));
-        frame.setLocation(380, 275);
+        frame.setPreferredSize(new Dimension(400, 330));
+        frame.setLocation(380, 250);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         luoKomponentit(frame.getContentPane());
@@ -56,18 +57,16 @@ public class Valikko implements Runnable {
 
     private void luoKomponentit(Container container) {
 
-        Savypaneeli paneeli = new Savypaneeli(Color.CYAN, Color.MAGENTA);
-        paneeli.setLayout(new GridLayout(1, 2, 0, 0));
+        Savypaneeli rakenne = new Savypaneeli(Color.CYAN, Color.MAGENTA);
+        container.add(rakenne);
 
-//        try {
-//            ImageIcon icon;
-//            icon = createImageIcon("number-palace-header.png", "number palace logo");
-//            JLabel headeri = new JLabel(icon);
-//            container.add(headeri);
-//        } catch (IOException ex) {
-//            System.err.println("Kuvaa ei löytynyt.");
-//        }
-        container.add(paneeli);
+        JLabel logoTila = new JLabel();                              // Empty element to trick the layout
+        logoTila.setPreferredSize(new Dimension(232, 80));
+        rakenne.add(logoTila, BorderLayout.NORTH);
+
+        JPanel paneeli = new JPanel();
+        paneeli.setLayout(new GridLayout(1, 2, 0, 0));
+        paneeli.setOpaque(false);
 
         JPanel scoret = new JPanel((new GridLayout(8, 0, 0, 0)));   // High Scores pane
         JLabel filleri = new JLabel();                              // Empty element to trick the layout
@@ -93,6 +92,8 @@ public class Valikko implements Runnable {
 
         paneeli.add(scoret);
         paneeli.add(kontrollipaneeli);
+
+        rakenne.add(paneeli, BorderLayout.CENTER);
     }
 
     public void luoKontrollit(JPanel kontrollipaneeli) {
@@ -115,16 +116,6 @@ public class Valikko implements Runnable {
         aloita.addActionListener(new ToimintojenKuuntelija("start", this, peli));
         kontrollipaneeli.add(aloita);
 
-    }
-
-    protected ImageIcon createImageIcon(String filename, String description) throws IOException {
-        InputStream is = getClass().getClassLoader().getResourceAsStream("filename");
-        BufferedImage bf = ImageIO.read(is);
-        if (is != null) {
-            return new ImageIcon(filename, description);
-        } else {
-            return null;
-        }
     }
 
     public JFrame getFrame() {

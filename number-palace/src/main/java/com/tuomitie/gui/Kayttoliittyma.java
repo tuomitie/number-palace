@@ -44,8 +44,8 @@ public class Kayttoliittyma implements Runnable {
     public void run() {
         frame = new JFrame("number-palace");
         frame.setPreferredSize(new Dimension(550, 400));
-        frame.setLocation(300, 200);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setLocation(300, 220);
+        frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
         luoKomponentit(frame.getContentPane());
 
