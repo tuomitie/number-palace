@@ -10,3 +10,4 @@ Documentation written in Finnish.
 * [Tuntikirjanpito](dokumentaatio/tuntikirjanpito.md)
 * [Checkstyle](http://htmlpreview.github.io/?https://github.com/tuomitie/number-palace/blob/master/dokumentaatio/checkstyle/checkstyle.html)
 * [Pit-test](http://htmlpreview.github.io/?https://github.com/tuomitie/number-palace/blob/master/dokumentaatio/pit/index.html)
+* [JavaDoc](http://htmlpreview.github.io/?https://github.com/tuomitie/number-palace/blob/master/javadoc/index.html)
