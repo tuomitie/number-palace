@@ -7,6 +7,11 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
+/**
+ * ActionListener for control buttons in the main menu and player board.
+ *
+ * @author Tuomas
+ */
 public class ToimintojenKuuntelija implements ActionListener {
 
     private String toiminto;
@@ -26,17 +31,20 @@ public class ToimintojenKuuntelija implements ActionListener {
         this.toiminto = toiminto;
         this.kayttoliittyma = kali;
         this.sudoku = sudoku;
+        this.peli = sudoku.getPeli();
     }
 
     /**
      * Alternative constuctor to use with main menu controls.
      *
      * @param toiminto The action in question.
+     * @param valikko The originating Valikko.
      * @param peli The Game instance.
      */
     public ToimintojenKuuntelija(String toiminto, Valikko valikko, Peli peli) {
         this.toiminto = toiminto;
         this.valikko = valikko;
+        this.sudoku = peli.getSudoku();
         this.peli = peli;
     }
 
@@ -53,7 +61,9 @@ public class ToimintojenKuuntelija implements ActionListener {
         // Player board controls
         if (toiminto.equals("inspect")) {
             if (sudoku.tarkistaRatkaisu()) {
+                peli.lisaaHighScore("" + peli.getSudoku().getKentta().getVaikeustaso() + " - YOU");
                 kayttoliittyma.luoPopUp("You got it, champ!");
+                peli.getValikko().paivitaScoret();
             } else {
                 kayttoliittyma.luoPopUp("That's doesn't seem to be correct.\nKeep trying!");
             }

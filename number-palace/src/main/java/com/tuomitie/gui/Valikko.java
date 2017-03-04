@@ -7,13 +7,8 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -30,6 +25,10 @@ public class Valikko implements Runnable {
     private JFrame frame;
     private List<JButton> napit;
     private JComboBox vaikeusLista;
+    private JPanel paneeli;
+    private JPanel scoret;
+    private List<JLabel> scoreLabelit;
+    private JButton start;
 
     /**
      * The main menu GUI used to start the game.
@@ -39,13 +38,16 @@ public class Valikko implements Runnable {
     public Valikko(Peli peli) {
         this.peli = peli;
         napit = new ArrayList<>();
+        paneeli = new JPanel();
+        scoret = new JPanel((new GridLayout(8, 0, 0, 0)));
+        scoreLabelit = new ArrayList<>();
     }
 
     @Override
     public void run() {
         frame = new JFrame("number-palace");
 
-        frame.setPreferredSize(new Dimension(400, 330));
+        frame.setPreferredSize(new Dimension(400, 350));
         frame.setLocation(380, 250);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,29 +62,44 @@ public class Valikko implements Runnable {
         Savypaneeli rakenne = new Savypaneeli(Color.CYAN, Color.MAGENTA);
         container.add(rakenne);
 
-        JLabel logoTila = new JLabel();                              // Empty element to trick the layout
+        JLabel logoTila = new JLabel();                              // Empty element make space for the logo
         logoTila.setPreferredSize(new Dimension(232, 80));
         rakenne.add(logoTila, BorderLayout.NORTH);
 
-        JPanel paneeli = new JPanel();
         paneeli.setLayout(new GridLayout(1, 2, 0, 0));
         paneeli.setOpaque(false);
 
-        JPanel scoret = new JPanel((new GridLayout(8, 0, 0, 0)));   // High Scores pane
-        JLabel filleri = new JLabel();                              // Empty element to trick the layout
+        JLabel filleri = new JLabel();      // Empty element to trick the layout
         scoret.add(filleri);
         JLabel otsikko = new JLabel("HAI SCOREZ", SwingConstants.CENTER);   // High Scores header
         otsikko.setFont(new Font("Sans-Serif", Font.BOLD, 21));
         otsikko.setForeground(Color.orange);
         scoret.add(otsikko);
-        for (int i = 1; i <= 5; i++) {      // Five top scores
-            JLabel rivi = new JLabel("" + (350 - i * 50) + " - TPT", SwingConstants.CENTER);
-            rivi.setFont(new Font("Sans-Serif", Font.BOLD, 16));
-            rivi.setPreferredSize(new Dimension(60, 10));
-            scoret.add(rivi);
+
+        JLabel rivi1 = new JLabel(peli.getHighScore(0), SwingConstants.CENTER);
+        scoreLabelit.add(rivi1);
+        scoret.add(rivi1);
+        JLabel rivi2 = new JLabel(peli.getHighScore(1), SwingConstants.CENTER);
+        scoreLabelit.add(rivi2);
+        scoret.add(rivi2);
+        JLabel rivi3 = new JLabel(peli.getHighScore(2), SwingConstants.CENTER);
+        scoreLabelit.add(rivi3);
+        scoret.add(rivi3);
+        JLabel rivi4 = new JLabel(peli.getHighScore(3), SwingConstants.CENTER);
+        scoreLabelit.add(rivi4);
+        scoret.add(rivi4);
+        JLabel rivi5 = new JLabel(peli.getHighScore(4), SwingConstants.CENTER);
+        scoreLabelit.add(rivi5);
+        scoret.add(rivi5);
+
+        for (JLabel l : scoreLabelit) {
+            l.setFont(new Font("Sans-Serif", Font.BOLD, 16));
+            l.setPreferredSize(new Dimension(60, 10));
         }
+
         JLabel alafilleri = new JLabel();   // Another embarrassing filler label
         scoret.add(alafilleri);
+        paneeli.add(scoret);
         scoret.setOpaque(false);
 
         JPanel kontrollipaneeli = new JPanel((new GridLayout(6, 0, 0, 10)));   // Control button panel
@@ -90,14 +107,19 @@ public class Valikko implements Runnable {
         luoKontrollit(kontrollipaneeli);
         kontrollipaneeli.setOpaque(false);
 
-        paneeli.add(scoret);
         paneeli.add(kontrollipaneeli);
 
         rakenne.add(paneeli, BorderLayout.CENTER);
     }
 
-    public void luoKontrollit(JPanel kontrollipaneeli) {
+    public void paivitaScoret() {
+        System.out.println(scoreLabelit.size());
+        for (int i = 0; i < scoreLabelit.size(); i++) {
+            scoreLabelit.get(i).setText(peli.getHighScore(i));
+        }
+    }
 
+    public void luoKontrollit(JPanel kontrollipaneeli) {
         JLabel filleri = new JLabel();
         kontrollipaneeli.add(filleri);
 
@@ -109,13 +131,12 @@ public class Valikko implements Runnable {
         vaikeusLista.setSelectedIndex(1);
         kontrollipaneeli.add(vaikeusLista);
 
-        JButton aloita = new JButton("New game");     // A button to check if the board matches the solution
-        aloita.setContentAreaFilled(true);
-        aloita.setBackground(Color.white);
-        aloita.setFocusPainted(false);
-        aloita.addActionListener(new ToimintojenKuuntelija("start", this, peli));
-        kontrollipaneeli.add(aloita);
-
+        start = new JButton("New game");     // A button to check if the board matches the solution
+        start.setContentAreaFilled(true);
+        start.setBackground(Color.white);
+        start.setFocusPainted(false);
+        start.addActionListener(new ToimintojenKuuntelija("start", this, peli));
+        kontrollipaneeli.add(start);
     }
 
     public JFrame getFrame() {

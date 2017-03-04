@@ -1,8 +1,6 @@
 package com.tuomitie.logiikka;
 
-import com.tuomitie.gui.Kayttoliittyma;
 import com.tuomitie.gui.Valikko;
-import java.util.Scanner;
 import javax.swing.SwingUtilities;
 
 /**
@@ -16,7 +14,7 @@ public class Paaohjelma {
      * Main method initializes the game with a keyboard scanner (used for
      * development).
      *
-     * @see com.tuomitie.logiikka.Peli#kaynnista()
+     * @see com.tuomitie.logiikka.Peli#kaynnista(String vaikeustaso)
      *
      * @param args You know what this is.
      */

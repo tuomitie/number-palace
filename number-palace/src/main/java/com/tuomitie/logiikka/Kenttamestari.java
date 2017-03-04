@@ -53,15 +53,16 @@ public class Kenttamestari {
 
     /**
      * Adds all the read lines on a list, each as an numeric difficulty level
-     * and two strings in an array.
+     * and two strings in an array. Also adds each line to a list with the
+     * corresponding difficulty level.
      */
     public void haeKaikkiKentatListalle() {
         while (lukija.hasNextLine()) {
             String rivi = lukija.nextLine();
-            String[] osat = rivi.split(" ");                                // Read each line from /src/main/resources/pohjat.txt
-            int vaikeustaso = Integer.valueOf(osat[0]);                     // and split into diff. level, player view and solution
-            kaikkiKentat.add(new Kentta(vaikeustaso, osat[1], osat[2]));     // make a list of these new bases
-            if (vaikeustaso <= 125) {
+            String[] osat = rivi.split(" ");                                    // Read each line from /src/main/resources/pohjat.txt
+            int vaikeustaso = Integer.valueOf(osat[0]);                         // and split into diff. level, player view and solution
+            kaikkiKentat.add(new Kentta(vaikeustaso, osat[1], osat[2]));        // make a list of these new bases
+            if (vaikeustaso <= 125) {                                           // Then add to a corresponding smaller list
                 helpotKentat.add(new Kentta(vaikeustaso, osat[1], osat[2]));
             } else if (vaikeustaso <= 225) {
                 semiKentat.add(new Kentta(vaikeustaso, osat[1], osat[2]));
@@ -73,7 +74,7 @@ public class Kenttamestari {
     }
 
     /**
-     * Returns a random Kentta from the list.
+     * Returns a random Kentta from the list with all of them.
      *
      * @return One Kentta item.
      */
@@ -82,18 +83,24 @@ public class Kenttamestari {
         return kaikkiKentat.get(0);              // and return one
     }
 
+    /**
+     * Returns a Kentta with a requested difficulty level.
+     *
+     * @param taso The difficulty level requested (easy/semi/hard/random).
+     * @return The first item from a corresponding, shuffled list.
+     */
     public Kentta annaKenttaVaikeustasolla(String taso) {
         if (taso.contains("easy")) {
-            Collections.shuffle(helpotKentat);       // Randomize the items on the list
+            Collections.shuffle(helpotKentat);
             return helpotKentat.get(0);
         } else if (taso.contains("semi")) {
-            Collections.shuffle(semiKentat);       // Randomize the items on the list
+            Collections.shuffle(semiKentat);
             return semiKentat.get(0);
         } else if (taso.contains("hard")) {
-            Collections.shuffle(vaikeatKentat);       // Randomize the items on the list
+            Collections.shuffle(vaikeatKentat);
             return vaikeatKentat.get(0);
         } else {
-            Collections.shuffle(kaikkiKentat);       // Randomize the items on the list
+            Collections.shuffle(kaikkiKentat);
             return kaikkiKentat.get(0);
         }
 

@@ -2,10 +2,6 @@ package com.tuomitie.logiikka;
 
 import com.tuomitie.gui.Kayttoliittyma;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.SwingUtilities;
-
 /**
  * The class establishes rules for the common Sudoku 9x9 game. Contains a Kentta
  * object read from a file by the Kenttamestari class, tilanne and ratkaisu
@@ -26,7 +22,8 @@ public class Sudoku {
     /**
      * Create the data structures and call the initializing method.
      *
-     * @see com.tuomitie.logiikka.Sudoku#alusta()
+     * @param peli References the game that invoked this sudoku.
+     * @see com.tuomitie.logiikka.Sudoku#alusta(String vaikeustaso)
      */
     public Sudoku(Peli peli) {
         this.peli = peli;
@@ -39,12 +36,15 @@ public class Sudoku {
     /**
      * Calls the Kenttamestari class, which handles the different game layouts,
      * creates the player view and solution based on the data, and invokes GUI.
+     *
+     * @param vaikeustaso The difficulty level requested
+     * (easy/semi/hard/random).
      */
     public void alusta(String vaikeustaso) {
-        Kenttamestari kenttamestari = new Kenttamestari();      // Set up the game by creating a new grid manager
+        Kenttamestari kenttamestari = new Kenttamestari();              // Set up the game by creating a new grid manager
         kenttamestari.haeTiedosto();
         kenttamestari.haeKaikkiKentatListalle();
-        kentta = kenttamestari.annaKenttaVaikeustasolla(vaikeustaso);                    // Get one grid from the manager and use it for the rest of the game        
+        kentta = kenttamestari.annaKenttaVaikeustasolla(vaikeustaso);   // Get one grid from the manager and use it for the rest of the game
     }
 
     /**

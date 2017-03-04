@@ -4,8 +4,8 @@ import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.WindowAdapter;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import javax.imageio.ImageIO;
@@ -51,9 +51,13 @@ public class Savypaneeli extends JPanel {
             Graphics2D graphics2D = (Graphics2D) g;
             graphics2D.setPaint(gradientPaint);
             graphics2D.fillRect(0, 0, leveys, korkeus);
-            if (korkeus > 200) {
+            if (korkeus > 200 && logo != null) {
                 g.drawImage(logo, 90, 20, this); // see javadoc for more info on the parameters
             }
         }
+    }
+
+    void addWindowFocusListener(WindowAdapter windowAdapter) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

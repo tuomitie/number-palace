@@ -44,6 +44,12 @@ public class SudokuTest {
     }
 
     @Test
+    public void alustuksenViittauksetPeliinJaKaliin() {
+        assertNotNull(sudoku.getKayttoliittyma());
+        assertNotNull(sudoku.getPeli());
+    }
+
+    @Test
     public void luoRuudukkoPalauttaaOikeanmuotoisenTaulukon() {
         int[][] ruudukko = new int[9][9];
         ruudukko = sudoku.luoRuudukko(kentta.taulukkoNumeroina(kentta.getNakyma()));

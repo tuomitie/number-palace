@@ -16,8 +16,6 @@ Päivä | Tunnit | Kuvaus
 18.02.2017 | 5 | Javadoc ja testit kuntoon, rivikattavuus nyt 89%. Sekvenssikaaviot lisätty. Painikkeiden toiminta ja ratkaisun tarkastus toimii.
 21.02.2017 | 8 | Demo laitoksella, GUI:ta väritetty ja aloitusvalikkoa aloitettu - ei vielä toiminnallisuutta.
 03.03.2017 | 8 | Toiminnallisuudet lisätty vaikeustason valintaan ja modaali-ikkuna lopetukseen. Logo lisätty alkunäkymään.
+04.03.2017 | 8 | Aloitusvalikon Highscore-listan päivitys. Projektin valmistelu julkaisukuntoon.
 
-
-**ToDo:**
-* Aloitusvalikon toiminnallisuudet (Highscoret listalle).
-* Ainakin tutustumista Sudokujen generointiin. Mahdollinen jatkokehityskohde?
+Total: 69 tuntia.
